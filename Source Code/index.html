@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATEXRENDER</title>
+    
+    <!-- Vendored KaTeX Engine (Zero external dependencies) -->
+    <link rel="stylesheet" href="vendor/katex/katex.min.css">
+    
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/preview.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="brand-logotype">LATEXRENDER</div>
+    </header>
+
+    <main class="workspace">
+        <!-- Editor View (Left Pane) -->
+        <section class="pane-editor">
+            <div class="editor-header">Source Code</div>
+            <div class="editor-container">
+                <textarea id="latex-editor" spellcheck="false" placeholder="% Type your LaTeX equation here...
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}"></textarea>
+            </div>
+        </section>
+
+        <!-- Rendered Output (Right Pane) -->
+        <section class="pane-preview">
+            <div class="preview-header">Live Preview</div>
+            <div class="preview-stage">
+                <!-- Inner container forms the white "paper" -->
+                <div id="preview-container">
+                    <!-- KaTeX DOM gets injected here -->
+                </div>
+                <!-- Validation/Syntax errors show up here -->
+                <div id="error-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Vendored KaTeX Script -->
+    <script defer src="vendor/katex/katex.min.js"></script>
+    
+    <!-- Application Logic -->
+    <script defer src="js/utils.js"></script>
+    <script defer src="js/editor.js"></script>
+    <script defer src="js/renderer.js"></script>
+    <script defer src="js/app.js"></script>
+
+</body>
+</html>

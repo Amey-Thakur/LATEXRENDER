@@ -1,0 +1,55 @@
+/* editor.css
+ * Styling for the raw LaTeX input area.
+ * The goal is a distraction-free, code-centric experience.
+ */
+
+.editor-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.editor-container {
+    flex: 1;
+    position: relative;
+    padding: 16px;
+}
+
+#latex-editor {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+}
+
+#latex-editor::placeholder {
+    color: var(--border-subtle);
+}
+
+/* Subtle scrollbars for the editor */
+#latex-editor::-webkit-scrollbar {
+    width: 10px;
+}
+
+#latex-editor::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#latex-editor::-webkit-scrollbar-thumb {
+    background-color: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    border: 3px solid var(--bg-surface);
+}

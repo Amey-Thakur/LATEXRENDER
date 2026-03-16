@@ -1,0 +1,82 @@
+/* main.css
+ * Core layout and global typography.
+ * Sets the foundation for the dark theme and uses native
+ * system fonts or bundled standard fonts to keep the app
+ * fast, dependency-free, and beautiful.
+ */
+
+:root {
+    /* Color Palette - Graphite Dark Theme */
+    --bg-surface: #0E1116;       /* Deepest background */
+    --bg-panel: #161B22;         /* Slightly lighter panels */
+    --border-subtle: #30363D;    /* Thin dividers */
+    --text-primary: #E6EDF3;     /* Main reading text */
+    --text-secondary: #848D97;   /* Muted text (line numbers, hints) */
+    --accent-blue: #2F81F7;      /* Primary actionable color */
+    --accent-red: #F85149;       /* Syntactical errors / alerts */
+
+    /* Typography */
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* Spacing & Layout */
+    --radius-md: 6px;
+    --radius-lg: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header Navbar */
+.app-header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.brand-logotype {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Main Workspace */
+.workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Left Pane: Editor */
+.pane-editor {
+    flex: 1;
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-surface);
+}
+
+/* Right Pane: Preview */
+.pane-preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-panel);
+}
