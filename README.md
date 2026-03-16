@@ -10,10 +10,10 @@ All engine operations occur entirely on the client, isolating user data and guar
 
 ## System Capabilities
 
-### Phase 3 System State
+### Phase 4 System State
 - **Instantaneous Rendering Segment:** A low-latency text area coupled to a KaTeX parsing thread, rendering standard mathematical notation directly to the DOM.
 - **Dynamic Configuration Layer:** A real-time controls state manager modifying typography, resolution, padding, and layout parameters.
-- **Raster Export Engine:** A 100% dependency-free rendering pipeline utilizing `SVG foreignObject` and high-DPI canvas buffering. Extracts native raster formats (PNG, JPG, WEBP, AVIF, GIF) directly from the browser matrix, and utilizes custom-written, hand-rolled binary encoders for legacy bit-maps (BMP) and tagged graphics (TIFF).
+- **Multimodal Export Engine:** A 100% dependency-free rendering pipeline supporting 14 distinct formats. Extracts native raster formats (PNG, JPG, WEBP, AVIF, GIF) directly from the browser matrix, and utilizes custom-written, hand-rolled binary encoders for legacy bit-maps (BMP), tagged graphics (TIFF), scalable vectors (SVG), icon wrappers (ICO), encapsulated vectors (EPS, PS), legacy metafiles (EMF, WMF), and a fully custom PDF 1.4 compiler. 
 - **Debounced Subsystem:** Real-time visual parsing operates on a 150-millisecond debounce block.
 - **Compartmentalized Assets:** All assets are sandboxed in the `Source Code` directory utilizing vanilla ES6.
 

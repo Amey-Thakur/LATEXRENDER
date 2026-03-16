@@ -49,19 +49,21 @@ const Exporter = (function() {
         const filename = sanitizeFilename(Editor.getValue().substring(0, 20) || "equation");
 
         if (rasterFormats.includes(format)) {
-            // Check if Raster module is loaded (Phase 3)
             if (typeof RasterExport !== 'undefined') {
                 await RasterExport.process(node, format, settings, filename);
-            } else {
-                throw new Error("Raster export module not found.");
-            }
+            } else throw new Error("Raster export module missing.");
         } else if (vectorFormats.includes(format)) {
-            // Pending Phase 4
-            alert(`Vector export (${format.toUpperCase()}) is scheduled for Phase 4 deployment.`);
-            // if (typeof VectorExport !== 'undefined') { ... } 
+            if (typeof VectorExport !== 'undefined') {
+                await VectorExport.process(node, format, settings, filename);
+            } else throw new Error("Vector export module missing.");
         } else if (documentFormats.includes(format)) {
-            // Pending Phase 4
-            alert(`Document/Legacy export (${format.toUpperCase()}) is scheduled for Phase 4 deployment.`);
+            if (format === 'pdf' && typeof DocumentExport !== 'undefined') {
+                await DocumentExport.process(node, format, settings, filename);
+            } else if (format === 'ico' && typeof IconExport !== 'undefined') {
+                await IconExport.process(node, format, settings, filename);
+            } else if (['emf', 'wmf'].includes(format) && typeof MetafileExport !== 'undefined') {
+                await MetafileExport.process(node, format, settings, filename);
+            } else throw new Error(`Document export module missing for ${format}.`);
         } else {
             throw new Error(`Unsupported export format: ${format}`);
         }
