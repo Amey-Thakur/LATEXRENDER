@@ -10,13 +10,14 @@ All engine operations occur entirely on the client, isolating user data and guar
 
 ## System Capabilities
 
-### Phase 5 System State
+### Phase 6 System State (Final)
 - **Instantaneous Rendering Segment:** A low-latency text area coupled to a KaTeX parsing thread, rendering standard mathematical notation directly to the DOM.
 - **Dynamic Configuration Layer:** A real-time controls state manager modifying typography, resolution, padding, and layout parameters.
 - **Multimodal Export Engine:** A 100% dependency-free rendering pipeline supporting 14 distinct formats. Extracts native raster formats (PNG, JPG, WEBP, AVIF, GIF) directly from the browser matrix, and utilizes custom-written, hand-rolled binary encoders for legacy bit-maps (BMP), tagged graphics (TIFF), scalable vectors (SVG), icon wrappers (ICO), encapsulated vectors (EPS, PS), legacy metafiles (EMF, WMF), and a fully custom PDF 1.4 compiler. 
-- **Reactive UI Matrix:** The application viewport reflows dynamically, prioritizing the rendering stage on narrow viewpoints. Global state changes are physically animated (e.g., color transitions, layout reflows) strictly via hardware-accelerated CSS properties.
+- **Reactive UI Matrix:** The application viewport reflows dynamically, prioritizing the rendering stage on narrow viewpoints. Global state changes are physically animated strictly via hardware-accelerated CSS properties.
+- **Continuous Integration Deployment:** Project root implements a GitHub Actions `.github/workflows/deploy.yml` pipeline that auto-binds the isolated `/Source Code` directory to GitHub Pages on `main` branch pushes.
 - **Debounced Subsystem:** Real-time visual parsing operates on a 150-millisecond debounce block.
-- **Compartmentalized Assets:** All assets are sandboxed in the `Source Code` directory utilizing vanilla ES6.
+- **Compartmentalized Assets:** All assets are sandboxed utilizing vanilla ES6.
 
 ## Setup and Operation
 Because LATEXRENDER requires zero build tools or package managers, deployment is trivial:
