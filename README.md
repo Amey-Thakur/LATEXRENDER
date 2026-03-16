@@ -10,11 +10,12 @@ All engine operations occur entirely on the client, isolating user data and guar
 
 ## System Capabilities
 
-### Phase 2 System State
+### Phase 3 System State
 - **Instantaneous Rendering Segment:** A low-latency text area coupled to a KaTeX parsing thread, rendering standard mathematical notation directly to the DOM.
-- **Dynamic Configuration Layer:** A real-time controls state manager that modifies typography, unit scale (base size), bounding padding, color matrices, and background transparencies without requiring a re-parse of the KaTeX node tree.
-- **Debounced Subsystem:** Real-time visual parsing operates on a 150-millisecond debounce cycle to ensure stable performance during complex equation entry.
-- **Compartmentalized Assets:** All typography, parsing engines, and structural styling are wholly contained within the `Source Code` asset directory.
+- **Dynamic Configuration Layer:** A real-time controls state manager modifying typography, resolution, padding, and layout parameters.
+- **Raster Export Engine:** A 100% dependency-free rendering pipeline utilizing `SVG foreignObject` and high-DPI canvas buffering. Extracts native raster formats (PNG, JPG, WEBP, AVIF, GIF) directly from the browser matrix, and utilizes custom-written, hand-rolled binary encoders for legacy bit-maps (BMP) and tagged graphics (TIFF).
+- **Debounced Subsystem:** Real-time visual parsing operates on a 150-millisecond debounce block.
+- **Compartmentalized Assets:** All assets are sandboxed in the `Source Code` directory utilizing vanilla ES6.
 
 ## Setup and Operation
 Because LATEXRENDER requires zero build tools or package managers, deployment is trivial:

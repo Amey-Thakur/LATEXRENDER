@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Settings.init();
     Editor.init("#latex-editor");
     Renderer.init("#preview-container", "#error-message");
+    Exporter.init("#btn-export", "#export-format", "#preview-container");
 
     // 2. Connect the editor's change event directly to the renderer's
     //    render method. When the user types, the string gets passed along.
