@@ -79,4 +79,30 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--bg-panel);
+    min-width: 0;
+}
+
+/* Responsive Rules: Stack vertically on smaller monitors */
+@media (max-width: 900px) {
+    .workspace {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    .pane-editor {
+        flex: none;
+        height: 250px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+    .pane-controls {
+        flex: none;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+    }
+    .pane-preview {
+        flex: 1;
+        min-height: 400px;
+    }
 }

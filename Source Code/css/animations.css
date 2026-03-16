@@ -1,0 +1,58 @@
+/* animations.css
+ * Subtle micro-interactions and transition states for the UI.
+ * Designed to feel responsive without distracting from the math.
+ */
+
+/* Fade in the entire app smoothly on load */
+body {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Smooth color/border transitions for inputs */
+.input-select, .input-text, .input-range {
+    transition: all 0.2s ease;
+}
+
+.input-select:hover, .input-text:hover {
+    border-color: #4b5563;
+}
+
+/* Button physical press effect */
+.btn-primary {
+    transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Preview stage loading physics */
+#preview-container {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, color 0.3s ease;
+}
+
+/* Error banner slide up */
+#error-message {
+    animation: slideUpError 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUpError {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
