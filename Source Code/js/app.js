@@ -5,6 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Initialize core modules with DOM selectors
+    Settings.init();
     Editor.init("#latex-editor");
     Renderer.init("#preview-container", "#error-message");
 
@@ -13,6 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     //    Debouncing is handled inside the Editor module.
     Editor.onChange(function(newLatexString) {
         Renderer.render(newLatexString);
+    });
+
+    // 3. Connect the settings changes to trigger a re-render
+    //    with the existing editor value.
+    Settings.onChange(function(newState) {
+        Renderer.render(Editor.getValue());
     });
 
     console.log("LATEXRENDER Initialized: Editor & Renderer linked.");

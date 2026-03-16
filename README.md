@@ -10,8 +10,9 @@ All engine operations occur entirely on the client, isolating user data and guar
 
 ## System Capabilities
 
-### Phase 1 System State
+### Phase 2 System State
 - **Instantaneous Rendering Segment:** A low-latency text area coupled to a KaTeX parsing thread, rendering standard mathematical notation directly to the DOM.
+- **Dynamic Configuration Layer:** A real-time controls state manager that modifies typography, unit scale (base size), bounding padding, color matrices, and background transparencies without requiring a re-parse of the KaTeX node tree.
 - **Debounced Subsystem:** Real-time visual parsing operates on a 150-millisecond debounce cycle to ensure stable performance during complex equation entry.
 - **Compartmentalized Assets:** All typography, parsing engines, and structural styling are wholly contained within the `Source Code` asset directory.
 

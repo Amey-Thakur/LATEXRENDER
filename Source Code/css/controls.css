@@ -1,0 +1,158 @@
+/* controls.css
+ * Styling for the settings sidebar pane.
+ * Ensures the controls look clean and native, matching the dark theme.
+ * Keeps inputs easily accessible without drawing focus from the math.
+ */
+
+.pane-controls {
+    width: 280px;
+    background-color: var(--bg-surface);
+    border-left: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.controls-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.controls-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Form Groups Layout */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Native Form Elements Styled */
+.input-select, .input-text {
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-select:focus, .input-text:focus {
+    border-color: var(--accent-blue);
+}
+
+/* Color Pickers */
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-color {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+}
+
+.input-color::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.input-color::-webkit-color-swatch {
+    border: 2px solid var(--border-subtle);
+    border-radius: 50%;
+}
+
+.color-hex {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Range Slider */
+.input-range {
+    width: 100%;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+}
+
+/* Checkbox Toggle */
+.control-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.input-checkbox {
+    accent-color: var(--accent-blue);
+    width: 16px;
+    height: 16px;
+    cursor: inherit;
+}
+
+/* Download Actions */
+.action-box {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #1a6ff0;
+}
