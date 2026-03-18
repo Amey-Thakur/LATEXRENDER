@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     Renderer.init("#preview-container", "#error-message");
     Exporter.init("#btn-export", "#export-format", "#preview-container");
     Share.init("#btn-share");
-    History.init("#btn-history");
+    History.init("#btn-history", ".pane-history");
 
-    // Settings Panel Toggle (Useful for responsive and decluttering)
+    // Settings Panel Toggle
     const settingsToggle = document.getElementById("btn-settings-toggle");
     const settingsPane = document.querySelector(".pane-controls");
     if (settingsToggle && settingsPane) {
@@ -22,14 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Connect the editor's change event directly to the renderer's
-    //    render method. When the user types, the string gets passed along.
-    //    Debouncing is handled inside the Editor module.
+    // 2. Connect the editor's change event direct to the renderer
+    let historyTimeout;
     Editor.onChange(function(newLatexString) {
         Renderer.render(newLatexString);
         
-        // Log to history after some time (when user stops typing)
-        History.add(newLatexString);
+        // Add to history if the user stops typing for 2 seconds
+        clearTimeout(historyTimeout);
+        historyTimeout = setTimeout(() => {
+            History.add(newLatexString);
+        }, 2000);
     });
 
     // 3. Connect the settings changes to trigger a re-render

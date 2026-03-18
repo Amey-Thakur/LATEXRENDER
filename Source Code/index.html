@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/preview.css">
     <link rel="stylesheet" href="css/controls.css">
+    <link rel="stylesheet" href="css/history.css">
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
@@ -53,6 +54,18 @@
     </header>
 
     <main class="workspace">
+        <!-- History Drawer (Left Side) -->
+        <aside class="pane-history hidden">
+            <div class="history-header">
+                <span>Recent Renderings</span>
+                <button id="btn-history-clear" class="btn-text" title="Clear All History">Clear</button>
+            </div>
+            <div class="history-body">
+                <!-- Items populated by history.js -->
+                <div class="empty-state">No recent formulas.</div>
+            </div>
+        </aside>
+
         <!-- Editor View (Left Pane) -->
         <section class="pane-editor">
             <div class="editor-header">Source Code</div>

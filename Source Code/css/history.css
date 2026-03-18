@@ -1,0 +1,138 @@
+/* history.css
+ * Styling for the persistent history drawer.
+ * Matches the graphite theme with clean typography and spacious cards.
+ */
+
+.pane-history {
+    width: 320px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.pane-history.hidden {
+    margin-left: -320px;
+    pointer-events: none;
+}
+
+.history-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.2s;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.btn-text:hover {
+    color: var(--accent-red);
+    background-color: rgba(248, 81, 73, 0.05);
+}
+
+.history-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* History Entry Cards */
+.history-item {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.history-item:hover {
+    border-color: var(--accent-blue);
+    background-color: rgba(47, 129, 247, 0.05);
+}
+
+.history-item .item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.history-item .item-content {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px 0;
+}
+
+.history-item .btn-delete {
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--accent-red);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.history-item:hover .btn-delete {
+    opacity: 1;
+}
+
+.history-item .btn-delete:hover {
+    background-color: rgba(248, 81, 73, 0.1);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Responsive adjustment */
+@media (max-width: 1200px) {
+    .pane-history {
+        position: absolute;
+        height: calc(100vh - 60px);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    }
+}
