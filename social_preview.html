@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LATEXRENDER Social Preview Generator</title>
+    <title>LATEXRENDER Social Identity</title>
     <style>
         :root {
             --bg-navy: #0A0D11;
             --brand-blue: #2F81F7;
             --text-primary: #E6EDF3;
             --text-secondary: #848D97;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             --font-serif: "Times New Roman", serif;
         }
 
@@ -21,16 +21,16 @@
         }
 
         body {
-            background-color: #1a1a1a;
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: var(--font-main);
+            font-family: var(--font-ui);
         }
 
-        /* The 1280x640 Canvas */
-        .preview-canvas {
+        /* 1280x640 Scholarly/Premium Canvas */
+        .canvas {
             width: 1280px;
             height: 640px;
             background-color: var(--bg-navy);
@@ -38,167 +38,163 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 1px solid #333;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #1a1a1a;
         }
 
-        /* Horizon Split Design */
-        .top-section {
-            flex: 1;
-            background-color: var(--bg-navy);
+        /* Background Grid Pattern (Subtle SEO/Tech vibe) */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+            pointer-events: none;
+        }
+
+        /* Branding Content */
+        .content {
+            z-index: 10;
+            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding-left: 80px;
-            position: relative;
-        }
-
-        .bottom-section {
-            height: 200px;
-            background-color: var(--brand-blue);
-            display: flex;
             align-items: center;
-            padding: 0 80px;
-            justify-content: space-between;
+            gap: 40px;
+            transform: translateY(-30px); /* Slightly shift up for better spacing below */
         }
 
-        /* Typography */
-        .logo-container {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 10px;
-        }
-
-        .latex-wordmark {
+        /* The Perfected LaTeX Logo */
+        .latex-logo {
             font-family: var(--font-serif);
-            font-size: 140px;
+            font-size: 180px;
             font-weight: 700;
             color: white;
-            letter-spacing: -2px;
             display: flex;
             align-items: baseline;
+            letter-spacing: -2px;
         }
 
-        .latex-wordmark span.a {
-            font-size: 0.7em;
+        .latex-logo .a {
+            font-size: 0.70em;
             text-transform: uppercase;
             margin-left: -0.36em;
-            margin-right: -0.1em;
+            margin-right: -0.15em;
             position: relative;
             top: -0.32em;
         }
 
-        .latex-wordmark span.e {
+        .latex-logo .e {
             font-size: 1em;
             text-transform: uppercase;
-            margin-left: -0.15em;
-            margin-right: -0.1em;
+            margin-left: -0.18em;
+            margin-right: -0.12em;
             position: relative;
             top: 0.22em;
         }
 
-        .render-text {
-            font-size: 110px;
+        .render-logo {
+            font-family: var(--font-ui);
+            font-size: 140px;
             font-weight: 900;
-            letter-spacing: -4px;
-            margin-left: 15px;
-            color: white;
+            letter-spacing: -6px;
+            margin-left: 20px;
+            background: linear-gradient(180deg, white, var(--brand-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .tagline {
+        .description {
             color: var(--text-secondary);
-            font-size: 32px;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            max-width: 800px;
-            line-height: 1.4;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            max-width: 900px;
+            line-height: 1.6;
         }
 
-        .features-grid {
+        /* Footer / Credits */
+        .footer {
+            position: absolute;
+            bottom: 60px;
+            width: 100%;
             display: flex;
-            gap: 40px;
+            justify-content: space-between;
+            padding: 0 80px;
+            align-items: flex-end;
+        }
+
+        .signature {
             color: white;
-            font-size: 24px;
+            font-size: 24px; /* Increased for premium readability */
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+        }
+
+        .signature span {
+            color: var(--brand-blue);
+            font-weight: 800;
+        }
+
+        .badge-grid {
+            display: flex;
+            gap: 24px;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
         }
 
-        .developer-badge {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
-            color: white;
-        }
-
-        .dev-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            opacity: 0.8;
-            letter-spacing: 0.2em;
-            margin-bottom: 4px;
-        }
-
-        .dev-name {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        /* Abstract Decoration */
-        .glow {
+        /* Branding Blue Bar */
+        .bottom-bar {
             position: absolute;
-            right: -100px;
-            top: -100px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(47, 129, 247, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .math-decoration {
-            position: absolute;
-            right: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: var(--font-serif);
-            font-size: 280px;
-            color: rgba(255, 255, 255, 0.03);
-            font-style: italic;
-            user-select: none;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--brand-blue);
         }
     </style>
 </head>
 <body>
 
-    <!-- TAKE SCREENSHOT OF THIS BOX (1280x640) -->
-    <div id="capture" class="preview-canvas">
-        <div class="glow"></div>
-        <div class="math-decoration">&int; &sum; &nabla;</div>
-
-        <div class="top-section">
-            <div class="logo-container">
-                <div class="latex-wordmark">L<span class="a">A</span>T<span class="e">E</span>X</div>
-                <div class="render-text">RENDER</div>
-            </div>
-            <p class="tagline">The definitive, dependency-free engine for client-side LaTeX mathematics.</p>
-        </div>
-
-        <div class="bottom-section">
-            <div class="features-grid">
-                <div>ZERO EXTERNAL DEPS</div>
-                <div>&bull;</div>
-                <div>14+ EXPORT MODES</div>
-                <div>&bull;</div>
-                <div>100% PRIVATE</div>
+    <div class="canvas">
+        <div class="grid"></div>
+        
+        <div class="content">
+            <div class="latex-logo">
+                L<span class="a">A</span>T<span class="e">E</span>X <span class="render-logo">RENDER</span>
             </div>
             
-            <div class="developer-badge">
-                <div class="dev-label">Engineering by</div>
-                <div class="dev-name">Amey Thakur</div>
+            <p class="description">
+                Autonomous Client-Side<br>Mathematical Rendering Engine
+            </p>
+        </div>
+
+        <div class="footer">
+            <div class="badge-grid">
+                <div class="badge">Academic Precision</div>
+                <div class="badge">Offline Engine</div>
+                <div class="badge">High Performance</div>
+            </div>
+            
+            <div class="signature">
+                ENGINEERED BY <span>AMEY THAKUR</span>
             </div>
         </div>
+
+        <div class="bottom-bar"></div>
     </div>
 
 </body>
