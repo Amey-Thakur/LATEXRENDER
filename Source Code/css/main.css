@@ -104,6 +104,45 @@ body {
     margin-left: 2px;
     background: linear-gradient(135deg, var(--text-primary), #848D97);
     -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Inline Brand Styling for Toasts/Messages */
+.brand-inline {
+    display: inline-flex;
+    align-items: baseline;
+    font-weight: 600;
+}
+
+.brand-inline .latex {
+    font-family: "KaTeX_Main", "Times New Roman", serif;
+}
+
+.brand-inline .a {
+    text-transform: uppercase;
+    font-size: 0.75em;
+    margin-left: -0.22em;
+    margin-right: -0.15em;
+    position: relative;
+    top: -0.25em;
+}
+
+.brand-inline .e {
+    text-transform: uppercase;
+    margin-left: -0.15em;
+    margin-right: -0.05em;
+    position: relative;
+    top: 0.15em;
+}
+
+.brand-inline .render {
+    font-family: var(--font-ui);
+    font-weight: 800;
+    margin-left: 1px;
+    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

@@ -18,11 +18,13 @@ const Share = (function() {
         const latex = Editor.getValue();
         const url = new URL(window.location.href);
         const originalUrl = `${window.location.origin}${window.location.pathname}`;
+        
+        const logoHtml = '<span class="brand-inline"><span class="latex">L<span class="a">a</span>T<span class="e">e</span>X</span><span class="render">RENDER</span></span>';
 
         if (!latex.trim()) {
             // If empty, just share the clean website URL
             navigator.clipboard.writeText(originalUrl).then(() => {
-                Toast.show('Website link copied to clipboard!');
+                Toast.show(`${logoHtml} link copied!`);
             });
             return;
         }
@@ -32,7 +34,7 @@ const Share = (function() {
         url.searchParams.set('formula', encoded);
 
         navigator.clipboard.writeText(url.toString()).then(() => {
-            Toast.show('Shareable formula link copied!');
+            Toast.show(`Copied ${logoHtml} formula link!`);
         }).catch(err => {
             console.error('Failed to copy: ', err);
         });
