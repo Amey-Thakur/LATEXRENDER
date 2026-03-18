@@ -6,6 +6,7 @@
 const Settings = (function() {
     // Default configuration prioritizing a clean, scholarly look.
     let state = {
+        theme: "dark",                // App theme (dark/light)
         fontFamily: "KaTeX_Main",     // Default serif font
         fontSize: "36px",             // Readable base size
         colorForeground: "#000000",   // True black text
@@ -26,6 +27,15 @@ const Settings = (function() {
         bindInput("setting-color-bg", "colorBackground");
         bindInput("setting-padding", "padding", "px");
         
+        // Theme Toggle handling
+        const themeToggle = document.getElementById("theme-toggle");
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const nextTheme = state.theme === 'dark' ? 'light' : 'dark';
+                updateTheme(nextTheme);
+            });
+        }
+
         // Checkboxes need slightly different handling
         const transparentToggle = document.getElementById("setting-transparent");
         if (transparentToggle) {
@@ -65,6 +75,26 @@ const Settings = (function() {
             state[key] = value;
             notify();
         }
+    }
+
+    // Specific handler for theme updates to sync DOM attributes
+    function updateTheme(newTheme) {
+        state.theme = newTheme;
+        document.documentElement.setAttribute("data-theme", newTheme);
+        
+        // Update icon visibility
+        const sun = document.getElementById("theme-icon-sun");
+        const moon = document.getElementById("theme-icon-moon");
+        
+        if (newTheme === 'light') {
+            sun.classList.add('hidden');
+            moon.classList.remove('hidden');
+        } else {
+            sun.classList.remove('hidden');
+            moon.classList.add('hidden');
+        }
+        
+        notify();
     }
 
     // Notifies subscribers (like the Renderer) that settings changed
