@@ -77,7 +77,15 @@ body {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+}
+
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 12px;
+    border-right: 1px solid var(--border-subtle);
 }
 
 .icon-button {
@@ -88,15 +96,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6px;
+    padding: 8px;
     border-radius: var(--radius-md);
-    transition: color 0.2s, background-color 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
+}
+
+.icon-button.contained {
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px; /* Smoother rounded squares like the screenshot */
+    padding: 10px;
 }
 
 .icon-button:hover {
     color: var(--icon-hover);
     background-color: var(--border-subtle);
+    transform: translateY(-1px);
+}
+
+.icon-button:active {
+    transform: translateY(0);
 }
 
 .hidden {

@@ -9,12 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
     Editor.init("#latex-editor");
     Renderer.init("#preview-container", "#error-message");
     Exporter.init("#btn-export", "#export-format", "#preview-container");
+    Share.init("#btn-share");
+    History.init("#btn-history");
+
+    // Settings Panel Toggle (Useful for responsive and decluttering)
+    const settingsToggle = document.getElementById("btn-settings-toggle");
+    const settingsPane = document.querySelector(".pane-controls");
+    if (settingsToggle && settingsPane) {
+        settingsToggle.addEventListener('click', () => {
+            const isHidden = settingsPane.classList.toggle('hidden');
+            settingsToggle.classList.toggle('active', !isHidden);
+        });
+    }
 
     // 2. Connect the editor's change event directly to the renderer's
     //    render method. When the user types, the string gets passed along.
     //    Debouncing is handled inside the Editor module.
     Editor.onChange(function(newLatexString) {
         Renderer.render(newLatexString);
+        
+        // Log to history after some time (when user stops typing)
+        History.add(newLatexString);
     });
 
     // 3. Connect the settings changes to trigger a re-render
