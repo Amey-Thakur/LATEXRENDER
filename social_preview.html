@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LATEXRENDER Social Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-navy: #0A0D11;
             --brand-blue: #2F81F7;
             --text-primary: #E6EDF3;
             --text-secondary: #848D97;
-            --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-ui: "Play", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             --font-serif: "Times New Roman", serif;
         }
 
@@ -98,8 +99,8 @@
 
         .render-logo {
             font-family: var(--font-ui);
-            font-size: 140px;
-            font-weight: 900;
+            font-size: 155px; /* Bumped up for 'Play' font scale */
+            font-weight: 700; /* Play 700 is very bold */
             letter-spacing: -6px;
             margin-left: 20px;
             background: linear-gradient(180deg, white, var(--brand-blue));
@@ -110,7 +111,7 @@
 
         .description {
             color: var(--text-secondary);
-            font-size: 28px;
+            font-size: 30px; /* Restored larger presence */
             font-weight: 300;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -131,7 +132,7 @@
 
         .signature {
             color: white;
-            font-size: 22px;
+            font-size: 24px; /* Restored signature presence */
             font-weight: 600;
             letter-spacing: 0.05em;
             white-space: nowrap;
@@ -154,7 +155,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 15px; /* Slightly larger */
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
