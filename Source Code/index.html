@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/preview.css">
     <link rel="stylesheet" href="css/controls.css">
     <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
@@ -182,11 +183,24 @@
         </aside>
     </main>
 
+    <!-- Custom Confirmation Modal -->
+    <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h3 id="modal-title">Confirm Action</h3>
+            <p id="modal-message">Are you sure you want to proceed?</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn-secondary">Cancel</button>
+                <button id="modal-confirm" class="btn-danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Vendored KaTeX Script -->
     <script defer src="vendor/katex/katex.min.js"></script>
     
     <!-- Application Logic -->
     <script defer src="js/utils.js"></script>
+    <script defer src="js/modal.js"></script>
     <script defer src="js/settings.js"></script>
     <script defer src="js/share.js"></script>
     <script defer src="js/history.js"></script>

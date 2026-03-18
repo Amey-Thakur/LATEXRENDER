@@ -1,0 +1,90 @@
+/* modal.css
+ * Professional, theme-matching confirmation modal.
+ * Uses a blurred backdrop and graphite colors for a premium feel.
+ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.modal-box {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    width: 380px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-overlay.hidden .modal-box {
+    transform: scale(0.9);
+}
+
+.modal-box h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.modal-box p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-secondary, .btn-danger {
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-subtle);
+}
+
+.btn-danger {
+    background-color: var(--accent-red);
+    color: #FFFFFF;
+}
+
+.btn-danger:hover {
+    background-color: #f85149dd;
+}

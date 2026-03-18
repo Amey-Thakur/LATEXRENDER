@@ -26,8 +26,12 @@ const History = (function() {
 
         if (btnClear) {
             btnClear.addEventListener('click', () => {
-                if (history.length > 0 && confirm("Clear all rendering history?")) {
-                    clearAll();
+                if (history.length > 0) {
+                    Modal.confirm(
+                        "Clear History", 
+                        "Are you sure you want to permanently delete all your recent renderings? This action cannot be undone.",
+                        () => clearAll()
+                    );
                 }
             });
         }

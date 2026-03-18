@@ -5,6 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Initialize core modules with DOM selectors
+    Modal.init();
     Settings.init();
     Editor.init("#latex-editor");
     Renderer.init("#preview-container", "#error-message");
