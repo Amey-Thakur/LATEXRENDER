@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATEXRENDER Social Preview Generator</title>
+    <style>
+        :root {
+            --bg-navy: #0A0D11;
+            --brand-blue: #2F81F7;
+            --text-primary: #E6EDF3;
+            --text-secondary: #848D97;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: "Times New Roman", serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: var(--font-main);
+        }
+
+        /* The 1280x640 Canvas */
+        .preview-canvas {
+            width: 1280px;
+            height: 640px;
+            background-color: var(--bg-navy);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        /* Horizon Split Design */
+        .top-section {
+            flex: 1;
+            background-color: var(--bg-navy);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 80px;
+            position: relative;
+        }
+
+        .bottom-section {
+            height: 200px;
+            background-color: var(--brand-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            justify-content: space-between;
+        }
+
+        /* Typography */
+        .logo-container {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .latex-wordmark {
+            font-family: var(--font-serif);
+            font-size: 140px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -2px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .latex-wordmark span.a {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            margin-left: -0.36em;
+            margin-right: -0.1em;
+            position: relative;
+            top: -0.32em;
+        }
+
+        .latex-wordmark span.e {
+            font-size: 1em;
+            text-transform: uppercase;
+            margin-left: -0.15em;
+            margin-right: -0.1em;
+            position: relative;
+            top: 0.22em;
+        }
+
+        .render-text {
+            font-size: 110px;
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin-left: 15px;
+            color: white;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            max-width: 800px;
+            line-height: 1.4;
+        }
+
+        .features-grid {
+            display: flex;
+            gap: 40px;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .developer-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            color: white;
+        }
+
+        .dev-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            letter-spacing: 0.2em;
+            margin-bottom: 4px;
+        }
+
+        .dev-name {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        /* Abstract Decoration */
+        .glow {
+            position: absolute;
+            right: -100px;
+            top: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(47, 129, 247, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .math-decoration {
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-serif);
+            font-size: 280px;
+            color: rgba(255, 255, 255, 0.03);
+            font-style: italic;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TAKE SCREENSHOT OF THIS BOX (1280x640) -->
+    <div id="capture" class="preview-canvas">
+        <div class="glow"></div>
+        <div class="math-decoration">&int; &sum; &nabla;</div>
+
+        <div class="top-section">
+            <div class="logo-container">
+                <div class="latex-wordmark">L<span class="a">A</span>T<span class="e">E</span>X</div>
+                <div class="render-text">RENDER</div>
+            </div>
+            <p class="tagline">The definitive, dependency-free engine for client-side LaTeX mathematics.</p>
+        </div>
+
+        <div class="bottom-section">
+            <div class="features-grid">
+                <div>ZERO EXTERNAL DEPS</div>
+                <div>&bull;</div>
+                <div>14+ EXPORT MODES</div>
+                <div>&bull;</div>
+                <div>100% PRIVATE</div>
+            </div>
+            
+            <div class="developer-badge">
+                <div class="dev-label">Engineering by</div>
+                <div class="dev-name">Amey Thakur</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
