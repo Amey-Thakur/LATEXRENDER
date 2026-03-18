@@ -16,15 +16,23 @@ const Share = (function() {
 
     function copyShareLink() {
         const latex = Editor.getValue();
-        if (!latex.trim()) return;
+        const url = new URL(window.location.href);
+        const originalUrl = `${window.location.origin}${window.location.pathname}`;
+
+        if (!latex.trim()) {
+            // If empty, just share the clean website URL
+            navigator.clipboard.writeText(originalUrl).then(() => {
+                Toast.show('Website link copied to clipboard!');
+            });
+            return;
+        }
 
         // Encode LaTeX to Base64 to keep URL clean
         const encoded = btoa(unescape(encodeURIComponent(latex)));
-        const url = new URL(window.location.href);
         url.searchParams.set('formula', encoded);
 
         navigator.clipboard.writeText(url.toString()).then(() => {
-            Toast.show('LaTeX formula copied to clipboard!');
+            Toast.show('Shareable formula link copied!');
         }).catch(err => {
             console.error('Failed to copy: ', err);
         });
