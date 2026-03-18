@@ -47,10 +47,20 @@ const Editor = (function() {
         return inputArea ? inputArea.value : "";
     }
 
+    // Programmatically updates the editor content and triggers 
+    // a re-render by calling handleInput.
+    function setValue(content) {
+        if (inputArea) {
+            inputArea.value = content;
+            handleInput();
+        }
+    }
+
     // Expose public API
     return {
         init: init,
         onChange: onChange,
-        getValue: getValue
+        getValue: getValue,
+        setValue: setValue
     };
 })();
