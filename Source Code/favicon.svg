@@ -1,21 +1,23 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Brand-aligned Graphite/Blue Horizon Favicon -->
+  <!-- Brand-aligned Navy/Blue Horizon Favicon -->
   <defs>
     <clipPath id="rounded">
-      <rect x="0" y="0" width="512" height="512" rx="60" ry="60" />
+      <rect x="0" y="0" width="512" height="512" rx="64" ry="64" />
     </clipPath>
   </defs>
   
   <g clip-path="url(#rounded)">
-    <!-- Top Half (Source/LaTeX) -->
-    <rect x="0" y="0" width="512" height="256" fill="#0E1116" />
-    <!-- Bottom Half (Render/Output) -->
+    <!-- Top Half (Deep Navy #101620 - Better contrast and more professional than pure black) -->
+    <rect x="0" y="0" width="512" height="256" fill="#101620" />
+    <!-- Bottom Half (Vibrant Blue #2F81F7) -->
     <rect x="0" y="256" width="512" height="256" fill="#2F81F7" />
     
-    <!-- LaTeX Text (Serif/Academic) -->
-    <text x="256" y="180" font-family="'Times New Roman', serif" font-size="140" font-weight="600" fill="white" text-anchor="middle" letter-spacing="-5">L<tspan baseline-shift="30" font-size="100">A</tspan>T<tspan baseline-shift="-15" font-size="140">E</tspan>X</text>
+    <!-- Accurate LaTeX Logo (Using proper offsets for L-A-T-E-X) -->
+    <text x="256" y="175" font-family="'Times New Roman', serif" font-size="150" font-weight="700" fill="white" text-anchor="middle">
+      L<tspan baseline-shift="30" font-size="105" dx="-8">A</tspan><tspan dx="-8">T</tspan><tspan baseline-shift="-20" font-size="150" dx="-6">E</tspan><tspan dx="-8">X</tspan>
+    </text>
     
-    <!-- RENDER Text (Modern/Sans) -->
-    <text x="256" y="415" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="110" font-weight="800" fill="white" text-anchor="middle" letter-spacing="-2">RENDER</text>
+    <!-- RENDER Text (Sharp Sans-serif) -->
+    <text x="256" y="420" font-family="'Segoe UI', system-ui, sans-serif" font-size="115" font-weight="900" fill="white" text-anchor="middle" letter-spacing="-2">RENDER</text>
   </g>
 </svg>
