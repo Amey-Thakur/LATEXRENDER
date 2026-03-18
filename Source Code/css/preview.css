@@ -24,32 +24,42 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 60px; /* Increased breathing room */
     overflow: auto;
     position: relative;
+    background-color: var(--bg-panel);
 }
 
 /* The actual white "paper" where the equation lives */
 #preview-container {
     background-color: #FFFFFF;
     color: #000000;
-    padding: 40px;
+    /* padding is controlled by JS renderer */
     border-radius: var(--radius-md);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    min-width: 400px;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
+    min-width: 100px;
+    min-height: 100px;
+    width: fit-content;
+    max-width: none;
+    display: inline-block;
+    vertical-align: middle;
+    transition: box-shadow 0.2s ease;
+    flex-shrink: 0; /* Ensure it doesn't compress in flex centered layouts */
 }
 
-/* Ensure large equations don't break the container */
-#preview-container .katex-display {
+/* Ensure KaTeX content doesn't force its own internal scrollbars */
+#preview-container .katex-display,
+#preview-container .katex {
     margin: 0;
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    max-width: none;
+    overflow: visible !important;
+}
+
+/* Center while allowing overflow in the flex container */
+.preview-stage::before,
+.preview-stage::after {
+    content: '';
+    margin: auto;
 }
 
 /* Error message banner */
