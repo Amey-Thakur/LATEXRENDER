@@ -70,29 +70,26 @@ body {
 
 .brand-logotype {
     font-family: "KaTeX_Main", "Times New Roman", serif;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    letter-spacing: 0em;
     display: flex;
     align-items: baseline;
     color: var(--text-primary);
     user-select: none;
+    cursor: default;
 }
 
-.brand-logotype .latex-logo {
-    margin-right: 2px;
-}
-
-.brand-logotype .latex-logo .a {
+.latex-logo .a {
     text-transform: uppercase;
     font-size: 0.75em;
-    margin-left: -0.2em;
+    margin-left: -0.22em;
     margin-right: -0.15em;
     position: relative;
-    top: -0.25em;
+    top: -0.28em;
 }
 
-.brand-logotype .latex-logo .e {
+.latex-logo .e {
     text-transform: uppercase;
     margin-left: -0.15em;
     margin-right: -0.05em;
@@ -100,17 +97,14 @@ body {
     top: 0.18em;
 }
 
-.brand-logotype .brand-suffix {
-    font-weight: 300;
-    opacity: 0.9;
-    letter-spacing: 0.05em;
+.brand-render {
+    font-family: var(--font-ui); /* Sans-serif for the brand identity 'RENDER' part */
+    font-weight: 700;
+    letter-spacing: -0.01em;
     margin-left: 2px;
-}
-
-.brand-logotype .brand-arrow {
-    margin: 0 8px;
-    font-family: var(--font-ui);
-    opacity: 0.5;
+    background: linear-gradient(135deg, var(--text-primary), #848D97);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .header-actions {
