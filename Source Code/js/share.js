@@ -24,7 +24,7 @@ const Share = (function() {
         url.searchParams.set('formula', encoded);
 
         navigator.clipboard.writeText(url.toString()).then(() => {
-            alert('Shareable link copied to clipboard!');
+            Toast.show('LaTeX formula copied to clipboard!');
         }).catch(err => {
             console.error('Failed to copy: ', err);
         });

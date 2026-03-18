@@ -1,0 +1,47 @@
+/* toast.css
+ * Premium floating notification system.
+ * Matches the graphite theme with subtle animations and transparency.
+ */
+
+.toast-container {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: auto;
+    animation: toast-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               toast-out 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.6s forwards;
+}
+
+.toast svg {
+    color: var(--accent-blue);
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toast-out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
