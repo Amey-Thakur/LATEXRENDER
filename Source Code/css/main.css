@@ -82,19 +82,19 @@ body {
 
 .latex-logo .a {
     text-transform: uppercase;
-    font-size: 0.75em;
-    margin-left: -0.22em;
+    font-size: 0.70em;
+    margin-left: -0.36em;
     margin-right: -0.15em;
     position: relative;
-    top: -0.28em;
+    top: -0.32em;
 }
 
 .latex-logo .e {
     text-transform: uppercase;
-    margin-left: -0.15em;
-    margin-right: -0.05em;
+    margin-left: -0.18em;
+    margin-right: -0.12em;
     position: relative;
-    top: 0.18em;
+    top: 0.22em;
 }
 
 .brand-render {
@@ -121,19 +121,19 @@ body {
 
 .brand-inline .a {
     text-transform: uppercase;
-    font-size: 0.75em;
-    margin-left: -0.22em;
+    font-size: 0.70em;
+    margin-left: -0.36em;
     margin-right: -0.15em;
     position: relative;
-    top: -0.25em;
+    top: -0.30em;
 }
 
 .brand-inline .e {
     text-transform: uppercase;
-    margin-left: -0.15em;
-    margin-right: -0.05em;
+    margin-left: -0.18em;
+    margin-right: -0.12em;
     position: relative;
-    top: 0.15em;
+    top: 0.20em;
 }
 
 .brand-inline .render {

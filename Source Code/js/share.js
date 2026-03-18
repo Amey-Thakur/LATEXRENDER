@@ -19,7 +19,7 @@ const Share = (function() {
         const url = new URL(window.location.href);
         const originalUrl = `${window.location.origin}${window.location.pathname}`;
         
-        const logoHtml = '<span class="brand-inline"><span class="latex">L<span class="a">a</span>T<span class="e">e</span>X</span><span class="render">RENDER</span></span>';
+        const logoHtml = '<span class="brand-inline"><span class="latex">L<span class="a">A</span>T<span class="e">E</span>X</span><span class="render">RENDER</span></span>';
 
         if (!latex.trim()) {
             // If empty, just share the clean website URL
