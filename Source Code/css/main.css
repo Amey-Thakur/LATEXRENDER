@@ -111,11 +111,10 @@ body {
 .icon-button:hover {
     color: var(--icon-hover);
     background-color: var(--border-subtle);
-    transform: translateY(-1px);
 }
 
 .icon-button:active {
-    transform: translateY(0);
+    opacity: 0.8;
 }
 
 .hidden {
