@@ -1,167 +1,103 @@
 // document.js
 // Handles PDF document exports natively.
-// Since a full PDF writer (like jsPDF) is heavily complex, this provides a
-// lightweight, hand-coded PDF 1.4 compiler that encapsulates the rendered
-// mathematical equation (as a rasterized asset) into a single page.
-// The code strictly writes binary dictionary objects.
+// Implements a lightweight, hand-coded PDF 1.4 compiler that
+// encapsulates the rendered equation as a JPEG image asset
+// into a single-page document. Writes binary dictionary objects
+// with correct cross-reference byte offsets.
 
 const DocumentExport = (function() {
-    
-    // Core pipeline: DOM -> SVG -> Canvas -> PNG DataURI -> PDF Payload
+
+    // Core pipeline: DOM -> Canvas -> JPEG -> PDF binary
     async function process(targetNode, format, settings, baseFilename) {
-        
-        // 1. Re-use Raster logic to capture the render as a high-res graphic buffer
-        const scale = 4.0; 
+        const { canvas } = await Capture.toCanvas(targetNode, 4.0, settings);
+
         const rect = targetNode.getBoundingClientRect();
         const width = Math.ceil(rect.width);
         const height = Math.ceil(rect.height);
-        
-        // Force KaTeX CSS embedding
-        const cssContent = await fetchKatexCSS();
-        
-        const clone = targetNode.cloneNode(true);
-        clone.style.margin = "0";
-        clone.style.width = width + "px";
-        clone.style.height = height + "px";
 
-        const svgString = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="${width * scale}" height="${height * scale}">
-                <style>${cssContent}</style>
-                <foreignObject width="100%" height="100%">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="transform: scale(${scale}); transform-origin: top left;">
-                        ${clone.outerHTML}
-                    </div>
-                </foreignObject>
-            </svg>
-        `;
-
-        const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-        const url = URL.createObjectURL(svgBlob);
-        
-        const img = new Image();
-        await new Promise((resolve, reject) => {
-            img.onload = resolve;
-            img.onerror = reject;
-            img.src = url;
-        });
-
-        const canvas = document.createElement("canvas");
-        canvas.width = width * scale;
-        canvas.height = height * scale;
-        const ctx = canvas.getContext("2d");
-
-        if (!settings.isTransparent) {
-            ctx.fillStyle = settings.colorBackground;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        URL.revokeObjectURL(url);
-
-        // Extract a JPEG compressed payload (much easier to embed cleanly in our lightweight PDF engine than uncompressed RGB streams)
+        // JPEG is simpler to embed than raw RGB in our lightweight PDF engine
         const jpegDataUrl = canvas.toDataURL("image/jpeg", 0.95);
-        
-        // Build the PDF structure
-        const pdfBlob = buildMinimalPDF(jpegDataUrl, width, height);
-        
+        const pdfBlob = buildPDF(jpegDataUrl, width, height, canvas.width, canvas.height);
+
         triggerDownload(pdfBlob, baseFilename + ".pdf");
     }
 
-    async function fetchKatexCSS() {
-        try {
-            const response = await fetch("vendor/katex/katex.min.css");
-            return await response.text();
-        } catch (e) {
-            return "";
-        }
-    }
-
-    // --- Lightweight Custom PDF 1.4 Compiler --- //
-    // Constructs a PDF file entirely by string concatenation of its internal cross-reference dictionary blocks
-    function buildMinimalPDF(jpegDataUrl, originalWidth, originalHeight) {
-        // Strip the Base64 header
+    // Constructs a valid PDF 1.4 file with correct xref byte offsets.
+    // Uses Uint8Array assembly to prevent encoding corruption of the JPEG stream.
+    function buildPDF(jpegDataUrl, origWidth, origHeight, pixelWidth, pixelHeight) {
         const base64Data = jpegDataUrl.replace(/^data:image\/jpeg;base64,/, "");
         const rawImageData = atob(base64Data);
-        
-        // Calculate dimensions. PDF default coordinates are represented in points (1 pt = 1/72 inch).
-        const ptWidth = originalWidth * 0.75; 
-        const ptHeight = originalHeight * 0.75;
 
-        // Build PDF parts
-        const objects = [];
-        let offset = 0;
-        
-        function addObj(content) {
-            const id = objects.length + 1;
-            const str = `${id} 0 obj\n${content}\nendobj\n`;
-            objects.push({ id, offset, str });
-            offset += str.length;
-            return id;
+        // PDF coordinates use points (1 pt = 1/72 inch)
+        const ptWidth = origWidth * 0.75;
+        const ptHeight = origHeight * 0.75;
+        const pageWidth = ptWidth + 40;
+        const pageHeight = ptHeight + 40;
+
+        // Content stream positions the image with margins
+        const stream = `q\n${ptWidth.toFixed(2)} 0 0 ${ptHeight.toFixed(2)} 20 20 cm\n/Im1 Do\nQ`;
+
+        // Build all PDF object strings
+        const obj1 = `1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n`;
+        const obj2 = `2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n`;
+        const obj3 = `3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth.toFixed(2)} ${pageHeight.toFixed(2)}] /Contents 4 0 R /Resources << /XObject << /Im1 5 0 R >> >> >>\nendobj\n`;
+        const obj4 = `4 0 obj\n<< /Length ${stream.length} >>\nstream\n${stream}\nendstream\nendobj\n`;
+        const obj5Head = `5 0 obj\n<< /Type /XObject /Subtype /Image /Width ${pixelWidth} /Height ${pixelHeight} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${rawImageData.length} >>\nstream\n`;
+        const obj5Tail = `\nendstream\nendobj\n`;
+
+        // PDF header as raw bytes to preserve binary comment markers
+        const header = new Uint8Array([
+            0x25, 0x50, 0x44, 0x46, 0x2D, 0x31, 0x2E, 0x34, 0x0A,
+            0x25, 0xE2, 0xE3, 0xCF, 0xD3, 0x0A
+        ]);
+
+        const enc = new TextEncoder();
+        const obj1Bytes = enc.encode(obj1);
+        const obj2Bytes = enc.encode(obj2);
+        const obj3Bytes = enc.encode(obj3);
+        const obj4Bytes = enc.encode(obj4);
+        const obj5HeadBytes = enc.encode(obj5Head);
+        const obj5TailBytes = enc.encode(obj5Tail);
+
+        // JPEG binary stream
+        const imgBytes = new Uint8Array(rawImageData.length);
+        for (let i = 0; i < rawImageData.length; i++) {
+            imgBytes[i] = rawImageData.charCodeAt(i);
         }
 
-        // PDF Header
-        let pdfStr = "%PDF-1.4\n%\xD3\xEB\xE9\xE1\n";
-        offset = pdfStr.length;
+        // Calculate exact byte offsets for each object
+        let pos = header.length;
+        const offsets = [];
 
-        // Catalog (Obj 1)
-        const catalogId = addObj(`<< /Type /Catalog /Pages 2 0 R >>`);
+        offsets.push(pos); pos += obj1Bytes.length;
+        offsets.push(pos); pos += obj2Bytes.length;
+        offsets.push(pos); pos += obj3Bytes.length;
+        offsets.push(pos); pos += obj4Bytes.length;
+        offsets.push(pos); pos += obj5HeadBytes.length + imgBytes.length + obj5TailBytes.length;
 
-        // Pages Info (Obj 2)
-        const pagesId = addObj(`<< /Type /Pages /Kids [3 0 R] /Count 1 >>`);
+        const xrefOffset = pos;
 
-        // Page (Obj 3)
-        const pageWidth = ptWidth + 40; // Add margins
-        const pageHeight = ptHeight + 40;
-        const pageId = addObj(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth.toFixed(2)} ${pageHeight.toFixed(2)}] /Contents 4 0 R /Resources << /XObject << /Im1 5 0 R >> >> >>`);
-
-        // Content Stream (Obj 4) placing the image
-        // cm = concatenate matrix (scale X, skew X, skew Y, scale Y, Translation X, Translation Y)
-        const streamData = `q\n${ptWidth.toFixed(2)} 0 0 ${ptHeight.toFixed(2)} 20 20 cm\n/Im1 Do\nQ`;
-        const contentId = addObj(`<< /Length ${streamData.length} >>\nstream\n${streamData}\nendstream`);
-
-        // Image Object (Obj 5)
-        const imgObjStr = `<< /Type /XObject /Subtype /Image /Width ${originalWidth * 4} /Height ${originalHeight * 4} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${rawImageData.length} >>\nstream\n`;
-        
-        // Because binary data fails in standard JS string concatenation, we assemble chunks 
-        // ArrayBuffer conversion
-        
-        // XRef Table Generation
-        let xref = `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
-        objects.forEach(obj => {
-            xref += `${obj.offset.toString().padStart(10, '0')} 00000 n \n`;
+        // Cross-reference table
+        let xref = `xref\n0 6\n0000000000 65535 f \n`;
+        offsets.forEach(o => {
+            xref += `${o.toString().padStart(10, '0')} 00000 n \n`;
         });
 
-        // Trailer
-        const trailer = `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${offset}\n%%EOF\n`;
+        const trailer = `trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`;
 
-        // We assemble the total binary file using Uint8Arrays to prevent encoding corruption of the JPEG stream
-        
-        const part1 = pdfStr + objects.slice(0, 4).map(o => o.str).join("");
-        const part2 = `${objects.length + 1} 0 obj\n` + imgObjStr;
-        const part3 = `\nendobj\n` + xref + trailer;
+        const xrefBytes = enc.encode(xref);
+        const trailerBytes = enc.encode(trailer);
 
-        const buffer1 = new TextEncoder().encode(part1);
-        const buffer2 = new TextEncoder().encode(part2);
-        const buffer3 = new TextEncoder().encode(part3);
-        
-        // JPEG binary stream
-        const imgBuffer = new Uint8Array(rawImageData.length);
-        for (let i = 0; i < rawImageData.length; i++) {
-            imgBuffer[i] = rawImageData.charCodeAt(i);
-        }
+        // Assemble final binary payload
+        const parts = [header, obj1Bytes, obj2Bytes, obj3Bytes, obj4Bytes, obj5HeadBytes, imgBytes, obj5TailBytes, xrefBytes, trailerBytes];
+        const totalSize = parts.reduce((sum, p) => sum + p.length, 0);
+        const finalBuffer = new Uint8Array(totalSize);
+        let offset = 0;
 
-        // Final payload allocation
-        const finalBuffer = new Uint8Array(buffer1.length + buffer2.length + imgBuffer.length + buffer3.length);
-        let currentOffset = 0;
-        
-        finalBuffer.set(buffer1, currentOffset); currentOffset += buffer1.length;
-        finalBuffer.set(buffer2, currentOffset); currentOffset += buffer2.length;
-        finalBuffer.set(imgBuffer, currentOffset); currentOffset += imgBuffer.length;
-        finalBuffer.set(buffer3, currentOffset);
-
-        // Re-adjust xref offsets for the binary injection delta
-        // (Simplified PDF structure accepts relaxed byte counters in most modern readers,
-        // but robust engines require exact counters. For this scope, the structure holds).
+        parts.forEach(part => {
+            finalBuffer.set(part, offset);
+            offset += part.length;
+        });
 
         return new Blob([finalBuffer], { type: "application/pdf" });
     }

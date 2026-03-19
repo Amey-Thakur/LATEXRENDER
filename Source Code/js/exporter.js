@@ -44,7 +44,7 @@ const Exporter = (function() {
     async function executeExport(node, format, settings) {
         const rasterFormats = ['png', 'jpg', 'webp', 'avif', 'gif', 'bmp', 'tiff'];
         const vectorFormats = ['svg', 'eps', 'ps'];
-        const documentFormats = ['pdf', 'ico', 'emf', 'wmf']; // ICO, EMF, WMF pending Phase 4
+        const documentFormats = ['pdf', 'ico', 'emf', 'wmf'];
 
         const filename = sanitizeFilename(Editor.getValue().substring(0, 20) || "equation");
 
