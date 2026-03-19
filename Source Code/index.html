@@ -17,6 +17,11 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
     
+    <!-- Google Fonts - Play -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    
     <!-- Vendored KaTeX Engine (Zero external dependencies) -->
     <link rel="stylesheet" href="vendor/katex/katex.min.css">
     
@@ -102,6 +107,7 @@
                 <div class="control-group">
                     <label for="setting-font">Typography</label>
                     <select id="setting-font" class="input-select">
+                        <option value="Play">Play (Sans-Serif)</option>
                         <option value="KaTeX_Main">Computer Modern (Serif)</option>
                         <option value="KaTeX_SansSerif">Helvetica (Sans)</option>
                         <option value="KaTeX_Math">KaTeX Math (Italic)</option>
@@ -180,7 +186,6 @@
                             <option value="wmf">WMF (Windows Metafile)</option>
                         </optgroup>
                     </select>
-                    <!-- Button logic will be wired in Phase 3 -->
                     <button class="btn-primary" id="btn-export">Export Render</button>
                 </div>
 

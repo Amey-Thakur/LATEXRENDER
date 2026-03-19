@@ -1,9 +1,4 @@
-/* main.css
- * Core layout and global typography.
- * Sets the foundation for the dark theme and uses native
- * system fonts or bundled standard fonts to keep the app
- * fast, dependency-free, and beautiful.
- */
+/* main.css - Core layout and global typography system. */
 
 :root {
     /* Color Palette - Graphite Dark Theme (Default) */
@@ -20,8 +15,8 @@
     --icon-hover: #E6EDF3;
 
     /* Typography */
-    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-    --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+    --font-ui: "Play", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-mono: "Play", ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
 
     /* Spacing & Layout */
     --radius-md: 6px;

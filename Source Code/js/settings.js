@@ -4,16 +4,15 @@
 // before exporting.
 
 const Settings = (function() {
-    // Default configuration prioritizing a clean, scholarly look.
     let state = {
-        theme: "dark",                // App theme (dark/light)
-        fontFamily: "KaTeX_Main",     // Default serif font
-        fontSize: "36px",             // Readable base size
-        colorForeground: "#000000",   // True black text
-        colorBackground: "#FFFFFF",   // True white paper
-        isTransparent: false,         // Background visibility
-        padding: "40px",              // Breathing room around the equation
-        displayMode: true             // Centered vs inline equation style
+        theme: "dark",                // Current UI theme (dark/light)
+        fontFamily: "Play",           // Branding font choice
+        fontSize: "36px",             // Base render scale
+        colorForeground: "#000000",   // Equation ink color
+        colorBackground: "#FFFFFF",   // Canvas background color
+        isTransparent: false,         // Alpha channel toggle
+        padding: "40px",              // Layout spacing
+        displayMode: true             // Centered vs Inline rendering
     };
 
     let changeCallbacks = [];
