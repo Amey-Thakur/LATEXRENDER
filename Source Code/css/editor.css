@@ -39,17 +39,3 @@
     color: var(--border-subtle);
 }
 
-/* Subtle scrollbars for the editor */
-#latex-editor::-webkit-scrollbar {
-    width: 10px;
-}
-
-#latex-editor::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-#latex-editor::-webkit-scrollbar-thumb {
-    background-color: var(--border-subtle);
-    border-radius: var(--radius-lg);
-    border: 3px solid var(--bg-surface);
-}
