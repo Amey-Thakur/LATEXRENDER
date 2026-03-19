@@ -7,32 +7,11 @@ const IconExport = (function() {
 
     async function process(targetNode, format, settings, baseFilename) {
         const size = 256;
-        const cssContent = await Capture.fetchKatexCSS();
-        const rect = targetNode.getBoundingClientRect();
 
-        const clone = targetNode.cloneNode(true);
-        const svgString = [
-            `<svg xmlns="http://www.w3.org/2000/svg" width="${rect.width}" height="${rect.height}">`,
-            `<style>${cssContent}</style>`,
-            `<foreignObject width="100%" height="100%">`,
-            `<div xmlns="http://www.w3.org/1999/xhtml">`,
-            clone.outerHTML,
-            `</div>`,
-            `</foreignObject>`,
-            `</svg>`
-        ].join("");
+        // Render the equation at standard scale first
+        const { canvas: srcCanvas } = await Capture.toCanvas(targetNode, 2.0, settings);
 
-        const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-        const url = URL.createObjectURL(svgBlob);
-
-        const img = new Image();
-        await new Promise((resolve, reject) => {
-            img.onload = resolve;
-            img.onerror = reject;
-            img.src = url;
-        });
-
-        // Setup a strict 256x256 square canvas
+        // Create a strict 256x256 square canvas
         const canvas = document.createElement("canvas");
         canvas.width = size;
         canvas.height = size;
@@ -44,14 +23,13 @@ const IconExport = (function() {
         }
 
         // Center the equation inside the icon frame
-        const scale = Math.min((size - 40) / rect.width, (size - 40) / rect.height);
-        const w = rect.width * scale;
-        const h = rect.height * scale;
+        const scale = Math.min((size - 40) / srcCanvas.width, (size - 40) / srcCanvas.height);
+        const w = srcCanvas.width * scale;
+        const h = srcCanvas.height * scale;
         const x = (size - w) / 2;
         const y = (size - h) / 2;
 
-        ctx.drawImage(img, x, y, w, h);
-        URL.revokeObjectURL(url);
+        ctx.drawImage(srcCanvas, x, y, w, h);
 
         // Extract PNG and wrap in ICO container
         canvas.toBlob(blob => {

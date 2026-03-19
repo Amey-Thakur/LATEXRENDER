@@ -28,15 +28,18 @@ const Exporter = (function() {
             // Route execution based on format classification
             setTimeout(() => {
                 executeExport(targetNode, format, settings)
+                    .then(() => {
+                        Toast.show(`Exported as ${format.toUpperCase()} successfully.`);
+                    })
                     .catch(err => {
                         console.error("Export Engine Exception:", err);
-                        alert("Export failed: " + err.message);
+                        Toast.show("Export failed: " + err.message);
                     })
                     .finally(() => {
                         btn.innerText = originalText;
                         btn.disabled = false;
                     });
-            }, 50); // Small timeout to allow UI to update to "Processing..."
+            }, 50);
         });
     }
 
