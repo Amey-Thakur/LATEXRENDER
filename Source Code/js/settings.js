@@ -6,7 +6,7 @@
 const Settings = (function() {
     let state = {
         theme: "dark",                // Current UI theme (dark/light)
-        fontFamily: "Play",           // Branding font choice
+        fontFamily: "KaTeX_Main",     // Default LaTeX font
         fontSize: "36px",             // Base render scale
         colorForeground: "#000000",   // Equation ink color
         colorBackground: "#FFFFFF",   // Canvas background color
