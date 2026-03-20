@@ -34,31 +34,32 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/toast.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/tooltips.css">
 </head>
 <body>
 
     <header class="app-header">
-        <div class="brand-logotype">
+        <div class="brand-logotype" data-tooltip="LATEXRENDER Engine v1.0">
             <span class="latex-logo">L<span class="a">A</span>T<span class="e">E</span>X</span><span class="brand-render">RENDER</span>
         </div>
         <div class="header-actions">
             <div class="action-group">
-                <button id="btn-history" class="icon-button contained" aria-label="View history">
+                <button id="btn-history" class="icon-button contained" aria-label="View history" data-tooltip="Formula history log">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path></svg>
                 </button>
-                <button id="btn-settings-toggle" class="icon-button contained" aria-label="Toggle configurations">
+                <button id="btn-settings-toggle" class="icon-button contained" aria-label="Toggle configurations" data-tooltip="Render settings">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                 </button>
-                <button id="btn-share" class="icon-button contained" aria-label="Share formula">
+                <button id="btn-share" class="icon-button contained" aria-label="Share formula" data-tooltip="Copy share link">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
                 </button>
             </div>
             
-            <button id="theme-toggle" class="icon-button" aria-label="Toggle dark mode">
+            <button id="theme-toggle" class="icon-button" aria-label="Toggle dark mode" data-tooltip="Switch light/dark">
                 <svg id="theme-icon-sun" class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <svg id="theme-icon-moon" class="theme-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </button>
-            <a href="https://github.com/Amey-Thakur/LATEXRENDER" target="_blank" class="icon-button github-link" aria-label="GitHub Repository">
+            <a href="https://github.com/Amey-Thakur/LATEXRENDER" target="_blank" class="icon-button github-link" aria-label="GitHub Repository" data-tooltip="Source code">
                 <svg height="24" viewBox="0 0 16 16" width="24" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
             </a>
         </div>
@@ -136,7 +137,7 @@
                         <label for="setting-size">Base Scale</label>
                         <span id="setting-size-val" class="color-hex">36px</span>
                     </div>
-                    <input type="range" id="setting-size" class="input-range" min="12" max="150" value="36" oninput="document.getElementById('setting-size-val').innerText = this.value + 'px'">
+                    <input type="range" id="setting-size" class="input-range" min="12" max="150" value="36" data-tooltip="Set equation size" oninput="document.getElementById('setting-size-val').innerText = this.value + 'px'">
                 </div>
 
                 <div class="control-group">
@@ -144,12 +145,12 @@
                         <label for="setting-padding">Canvas Spacing</label>
                         <span id="setting-padding-val" class="color-hex">40px</span>
                     </div>
-                    <input type="range" id="setting-padding" class="input-range" min="0" max="120" value="40" oninput="document.getElementById('setting-padding-val').innerText = this.value + 'px'">
+                    <input type="range" id="setting-padding" class="input-range" min="0" max="120" value="40" data-tooltip="Set outer padding" oninput="document.getElementById('setting-padding-val').innerText = this.value + 'px'">
                 </div>
 
                 <div class="control-group">
                     <label>Foreground Trace</label>
-                    <div class="color-picker-wrapper">
+                    <div class="color-picker-wrapper" data-tooltip="Equation color">
                         <input type="color" id="setting-color-fg" class="input-color" value="#000000">
                         <span class="color-hex" id="setting-color-fg-val">#000000</span>
                         <script>document.getElementById('setting-color-fg').addEventListener('input', e => document.getElementById('setting-color-fg-val').innerText = e.target.value.toUpperCase());</script>
@@ -158,27 +159,26 @@
 
                 <div class="control-group">
                     <label>Background Fill</label>
-                    <div class="color-picker-wrapper">
+                    <div class="color-picker-wrapper" data-tooltip="Stage color">
                         <input type="color" id="setting-color-bg" class="input-color" value="#FFFFFF">
                         <span class="color-hex" id="setting-color-bg-val">#FFFFFF</span>
                         <script>document.getElementById('setting-color-bg').addEventListener('input', e => document.getElementById('setting-color-bg-val').innerText = e.target.value.toUpperCase());</script>
                     </div>
                 </div>
 
-                <label class="control-toggle">
+                <label class="control-toggle" data-tooltip="Remove background from exports">
                     <input type="checkbox" id="setting-transparent" class="input-checkbox">
                     Transparent Background
                 </label>
 
-                <label class="control-toggle">
+                <label class="control-toggle" data-tooltip="Centered math display mode">
                     <input type="checkbox" id="setting-displayMode" class="input-checkbox" checked>
                     Math Display Mode (Centered)
                 </label>
 
-                <!-- Export Actions -->
                 <div class="action-box">
                     <label for="export-format">Export Format</label>
-                    <select id="export-format" class="input-select">
+                    <select id="export-format" class="input-select" data-tooltip="Select output format">
                         <optgroup label="Raster (Native)">
                             <option value="png">PNG (Portable Network Graphics)</option>
                             <option value="jpg">JPEG (Joint Photographic Experts)</option>
@@ -200,7 +200,7 @@
                             <option value="wmf">WMF (Windows Metafile)</option>
                         </optgroup>
                     </select>
-                    <button class="btn-primary" id="btn-export">Export Render</button>
+                    <button class="btn-primary" id="btn-export" data-tooltip="Download render result">Export Render</button>
                 </div>
 
             </div>
@@ -229,6 +229,7 @@
     <script defer src="js/settings.js"></script>
     <script defer src="js/share.js"></script>
     <script defer src="js/history.js"></script>
+    <script defer src="js/tooltips.js"></script>
     <script defer src="js/capture.js"></script>
     <script defer src="js/formats/raster.js"></script>
     <script defer src="js/formats/document.js"></script>

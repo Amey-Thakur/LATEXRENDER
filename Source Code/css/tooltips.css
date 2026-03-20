@@ -1,0 +1,50 @@
+/* tooltips.css
+ * Premium floating tooltip system.
+ */
+
+.tooltip {
+    position: fixed;
+    z-index: 9999;
+    padding: 6px 10px;
+    background-color: #1c2128;
+    color: #E6EDF3;
+    font-family: "Play", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid #30363D;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+}
+
+.tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.tooltip.pos-bottom::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: 5px solid #30363D;
+}
+
+.tooltip.pos-top::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 5px solid #30363D;
+}
