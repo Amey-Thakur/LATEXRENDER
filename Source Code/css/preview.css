@@ -53,6 +53,7 @@
     margin: 0;
     max-width: none;
     overflow: visible !important;
+    font-family: inherit !important;
 }
 
 /* Center while allowing overflow in the flex container */
