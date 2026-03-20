@@ -223,6 +223,7 @@ body {
 /* Left Pane: Editor */
 .pane-editor {
     flex: 1;
+    position: relative;
     border-right: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
