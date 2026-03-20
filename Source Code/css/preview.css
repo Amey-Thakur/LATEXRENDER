@@ -52,10 +52,25 @@
     margin: 0 !important;
 }
 
-/* Force KaTeX to strictly inherit the user's chosen Typography font across all math tokens */
+/* Force KaTeX to strictly inherit the user's chosen Typography font across standard math tokens */
 #preview-container .katex,
 #preview-container .katex * {
     font-family: inherit !important;
+}
+
+/* Explicitly protect structural geometry (Brackets, Integrals, Roots, Matrices) from breaking 
+   by returning their structural spans back to the proprietary KaTeX webfonts! */
+#preview-container .katex .delimsizing, 
+#preview-container .katex .delimsizinginner,
+#preview-container .katex .mop,
+#preview-container .katex .surd,
+#preview-container .katex .vlist-t,
+#preview-container .katex .vlist-r,
+#preview-container .katex .vlist,
+#preview-container .katex .vcenter *,
+#preview-container .katex .mopen,
+#preview-container .katex .mclose {
+    font-family: KaTeX_Size1, KaTeX_Size2, KaTeX_Size3, KaTeX_Size4, KaTeX_Main, Times New Roman, serif !important;
 }
 
 /* Center while allowing overflow in the flex container */
