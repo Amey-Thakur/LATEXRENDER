@@ -49,7 +49,8 @@
 
 /* Ensure KaTeX content doesn't force its own internal scrollbars */
 #preview-container .katex-display,
-#preview-container .katex {
+#preview-container .katex,
+#preview-container .katex * {
     margin: 0;
     max-width: none;
     overflow: visible !important;
