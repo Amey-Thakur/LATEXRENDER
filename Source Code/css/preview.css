@@ -47,14 +47,9 @@
     flex-shrink: 0; /* Ensure it doesn't compress in flex centered layouts */
 }
 
-/* Ensure KaTeX content doesn't force its own internal scrollbars */
-#preview-container .katex-display,
-#preview-container .katex,
-#preview-container .katex * {
-    margin: 0;
-    max-width: none;
-    overflow: visible !important;
-    font-family: inherit !important;
+/* Let KaTeX manage its own internal sizing and clipping for advanced SVG parts like square roots */
+#preview-container .katex-display {
+    margin: 0 !important;
 }
 
 /* Center while allowing overflow in the flex container */

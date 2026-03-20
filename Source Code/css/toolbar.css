@@ -8,7 +8,7 @@
     position: absolute;
     top: 56px; /* Just beneath the editor-header */
     right: 16px;
-    width: 320px;
+    width: 480px; /* Increased to fit full-width math structures */
     background-color: var(--bg-panel);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
@@ -66,42 +66,21 @@
     pointer-events: none;
 }
 
-.palette-nav {
+/* Continuous Scrollable Area */
+.palette-main {
     display: flex;
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-subtle);
-    padding: 0 8px;
-}
-
-.palette-tab {
-    flex: 1;
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-family: var(--font-ui);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 12px 2px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-    text-align: center;
-}
-
-.palette-tab:hover {
-    color: var(--text-primary);
-}
-
-.palette-tab.active {
-    color: var(--accent-blue);
-    border-bottom-color: var(--accent-blue);
+    flex-direction: column;
+    height: 380px; 
 }
 
 .palette-content {
-    padding: 12px;
-    height: 320px;
+    flex: 1;
+    padding: 12px 16px;
     overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
     background: var(--bg-panel);
+    scroll-behavior: smooth;
 }
 
 .palette-content::-webkit-scrollbar {
@@ -112,20 +91,22 @@
     border-radius: 4px;
 }
 
+.palette-section-title {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin: 16px 0 8px 0;
+}
+.palette-section-title:first-child {
+    margin-top: 4px;
+}
+
 .palette-grid {
-    display: none;
-    gap: 6px;
-    grid-template-columns: repeat(5, 1fr);
-}
-
-.palette-grid.active {
     display: grid;
-    animation: fade-in 0.2s ease forwards;
-}
-
-@keyframes fade-in {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+    gap: 8px;
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 8px;
 }
 
 .symbol-btn {
@@ -133,9 +114,8 @@
     border: 1px solid transparent;
     border-radius: 6px;
     color: var(--text-primary);
-    font-family: "KaTeX_Main", "Times New Roman", serif;
-    font-size: 1.15rem;
-    padding: 8px 0;
+    font-size: 1.25rem;
+    padding: 10px 0;
     cursor: pointer;
     transition: all 0.15s ease;
     display: flex;
@@ -147,6 +127,35 @@
     background-color: var(--bg-surface);
     border-color: var(--border-subtle);
     transform: scale(1.15);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     z-index: 2;
+}
+
+/* Bottom Nav Anchor Bar */
+.palette-bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
+    padding: 6px 8px;
+}
+
+.palette-nav-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.palette-nav-icon:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
 }
