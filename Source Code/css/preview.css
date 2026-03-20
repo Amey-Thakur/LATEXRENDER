@@ -52,14 +52,17 @@
     margin: 0 !important;
 }
 
-/* Force KaTeX to strictly inherit the user's chosen Typography font across standard math tokens */
-#preview-container .katex,
-#preview-container .katex * {
+/* Only apply user typography strictly to standard alphanumeric text/variable spans 
+   to prevent total breakdown of KaTeX bounding boxes and vlist calculation clips */
+#preview-container .katex .mathnormal,
+#preview-container .katex .mord,
+#preview-container .katex .mbin,
+#preview-container .katex .mrel,
+#preview-container .katex .text {
     font-family: inherit !important;
 }
 
-/* Explicitly protect structural geometry (Brackets, Integrals, Roots, Matrices) from breaking 
-   by returning their structural spans back to the proprietary KaTeX webfonts! */
+/* Explicitly reverse the font for geometry and structural layout primitives */
 #preview-container .katex .delimsizing, 
 #preview-container .katex .delimsizinginner,
 #preview-container .katex .mop,
@@ -69,7 +72,8 @@
 #preview-container .katex .vlist,
 #preview-container .katex .vcenter *,
 #preview-container .katex .mopen,
-#preview-container .katex .mclose {
+#preview-container .katex .mclose,
+#preview-container .katex .sizing {
     font-family: KaTeX_Size1, KaTeX_Size2, KaTeX_Size3, KaTeX_Size4, KaTeX_Main, Times New Roman, serif !important;
 }
 
