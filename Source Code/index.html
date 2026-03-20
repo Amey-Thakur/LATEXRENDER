@@ -20,7 +20,7 @@
     <!-- Google Fonts - Play -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500&family=Inter:wght@400;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600&family=Outfit:wght@400;600&family=Play:wght@400;700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Vendored KaTeX Engine (Zero external dependencies) -->
     <link rel="stylesheet" href="vendor/katex/katex.min.css">
@@ -103,19 +103,33 @@
         <aside class="pane-controls">
             <div class="controls-header">Configurations</div>
             <div class="controls-body">
-                
-                <div class="control-group">
-                    <label for="setting-font">Typography</label>
-                    <select id="setting-font" class="input-select">
-                        <option value="Play">Play (Sans-Serif)</option>
-                        <option value="KaTeX_Main">Computer Modern (Serif)</option>
-                        <option value="KaTeX_SansSerif">Helvetica (Sans)</option>
-                        <option value="KaTeX_Math">KaTeX Math (Italic)</option>
-                        <option value="Courier New">Courier (Monospace)</option>
-                        <option value="Arial">Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                    </select>
-                </div>
+                                <div class="control-item">
+                        <label for="setting-font">Typography</label>
+                        <select id="setting-font">
+                            <optgroup label="Scientific & Academic">
+                                <option value="KaTeX_Main">Computer Modern (LaTeX Default)</option>
+                                <option value="STIX Two Text">STIX Two (Scholarly Publishing)</option>
+                                <option value="KaTeX_Math">KaTeX Math (Italic Symbols)</option>
+                            </optgroup>
+                            <optgroup label="Modern Sans-Serif">
+                                <option value="Play" selected>Play (Application Default)</option>
+                                <option value="Inter">Inter (Professional)</option>
+                                <option value="Outfit">Outfit (Thin & Elegant)</option>
+                                <option value="Montserrat">Montserrat (Geometric)</option>
+                                <option value="Arial">Arial (System Standard)</option>
+                            </optgroup>
+                            <optgroup label="Traditional Serif">
+                                <option value="EB Garamond">EB Garamond (Classic Academic)</option>
+                                <option value="Libre Baskerville">Libre Baskerville (High Contrast)</option>
+                                <option value="Lora">Lora (Journal Style)</option>
+                                <option value="Times New Roman">Times New Roman (Standard)</option>
+                            </optgroup>
+                            <optgroup label="Technical Monospaced">
+                                <option value="Fira Code">Fira Code (Code Ligatures)</option>
+                                <option value="Courier New">Courier (Technical Typewriter)</option>
+                            </optgroup>
+                        </select>
+                    </div>
 
                 <div class="control-group">
                     <div class="control-row">
