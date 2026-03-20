@@ -1,0 +1,104 @@
+/* toolbar.css 
+ * Premium floating math symbol palette for LATEXRENDER.
+ * Designed to seamlessly blend with the graphite dark theme
+ * while providing an intuitive vector-like grid for math operators.
+ */
+
+.symbol-palette {
+    position: absolute;
+    top: 56px; /* Just beneath the editor-header */
+    right: 16px;
+    width: 320px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top right;
+}
+
+.symbol-palette.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96) translateY(-10px);
+}
+
+.palette-nav {
+    display: flex;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 8px;
+}
+
+.palette-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 12px 2px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.palette-tab:hover {
+    color: var(--text-primary);
+}
+
+.palette-tab.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+}
+
+.palette-content {
+    padding: 12px;
+    min-height: 200px;
+    background: var(--bg-panel);
+}
+
+.palette-grid {
+    display: none;
+    gap: 6px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.palette-grid.active {
+    display: grid;
+    animation: fade-in 0.2s ease forwards;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.symbol-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: "KaTeX_Main", "Times New Roman", serif;
+    font-size: 1.15rem;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symbol-btn:hover {
+    background-color: var(--bg-surface);
+    border-color: var(--border-subtle);
+    transform: scale(1.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}

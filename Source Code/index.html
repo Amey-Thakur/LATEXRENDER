@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="css/toast.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/tooltips.css">
+    <link rel="stylesheet" href="css/toolbar.css">
 </head>
 <body>
 
@@ -80,7 +81,20 @@
 
         <!-- Editor View (Left Pane) -->
         <section class="pane-editor">
-            <div class="editor-header">Source Code</div>
+            <div class="editor-header">
+                <span>Source Code</span>
+                <button id="btn-toggle-symbols" class="icon-button" aria-label="Insert math symbols" data-tooltip="Insert Math Symbols">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 5H7l6 7-6 7h11"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Floating Symbol Insertion Palette -->
+            <div id="symbol-palette-container" class="symbol-palette hidden">
+                <!-- Intelligently populated by toolbar.js framework -->
+            </div>
+            
             <div class="editor-container">
                 <textarea id="latex-editor" spellcheck="false" placeholder="% Type your LaTeX equation here...
 \int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}"></textarea>
@@ -230,6 +244,7 @@
     <script defer src="js/share.js"></script>
     <script defer src="js/history.js"></script>
     <script defer src="js/tooltips.js"></script>
+    <script defer src="js/toolbar.js"></script>
     <script defer src="js/capture.js"></script>
     <script defer src="js/formats/raster.js"></script>
     <script defer src="js/formats/document.js"></script>

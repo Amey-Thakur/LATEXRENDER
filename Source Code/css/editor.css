@@ -8,6 +8,7 @@
     padding: 0 16px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid var(--border-subtle);
     font-size: 0.85rem;
     color: var(--text-secondary);
