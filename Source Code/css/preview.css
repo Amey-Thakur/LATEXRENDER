@@ -52,6 +52,12 @@
     margin: 0 !important;
 }
 
+/* Force KaTeX to strictly inherit the user's chosen Typography font across all math tokens */
+#preview-container .katex,
+#preview-container .katex * {
+    font-family: inherit !important;
+}
+
 /* Center while allowing overflow in the flex container */
 .preview-stage::before,
 .preview-stage::after {
