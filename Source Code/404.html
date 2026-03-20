@@ -11,7 +11,8 @@
     <!-- Modern Typography & Iconography -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"> <!-- For math look -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/katex/katex.min.css">
 
     <style>
         :root {
@@ -156,30 +157,45 @@
             text-decoration: underline;
         }
 
-        .latex-brand {
-            font-weight: 700;
-            letter-spacing: 0.05em;
+        .brand-logotype {
+            font-family: "KaTeX_Main", "Times New Roman", serif;
+            font-size: 1.45rem;
+            font-weight: 500;
+            letter-spacing: 0em;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            color: var(--text-primary);
+            user-select: none;
+            cursor: default;
         }
-        
-        .latex-brand .a {
-            font-size: 0.7em;
+
+        .latex-logo .a {
             text-transform: uppercase;
-            vertical-align: 0.15em;
-            margin-left: -0.15em;
+            font-size: 0.70em;
+            margin-left: -0.36em;
             margin-right: -0.15em;
+            position: relative;
+            top: -0.32em;
         }
-        
-        .latex-brand .e {
+
+        .latex-logo .e {
             text-transform: uppercase;
-            vertical-align: -0.15em;
-            margin-left: -0.15em;
-            margin-right: -0.15em;
+            margin-left: -0.18em;
+            margin-right: -0.12em;
+            position: relative;
+            top: 0.22em;
         }
-        
+
         .brand-render {
-            font-weight: 400;
-            opacity: 0.8;
+            font-family: 'Play', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.01em;
             margin-left: 2px;
+            background: linear-gradient(135deg, var(--text-primary), #848D97);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
     </style>
@@ -190,8 +206,8 @@
     <div class="grid-bg"></div>
 
     <header style="padding: 24px; position: relative; z-index: 10; text-align: center;">
-        <div style="font-size: 1.5rem; color: var(--text-primary);">
-            <span class="latex-brand">L<span class="a">A</span>T<span class="e">E</span>X</span><span class="brand-render">RENDER</span>
+        <div class="brand-logotype">
+            <span class="latex-logo">L<span class="a">A</span>T<span class="e">E</span>X</span><span class="brand-render">RENDER</span>
         </div>
     </header>
 
