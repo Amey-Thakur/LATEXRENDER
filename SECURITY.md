@@ -2,11 +2,11 @@
 
 ## Maintenance Status
 
-This repository is part of a curated collection of academic and engineering projects and is maintained in a finalized and stable state. The project is preserved as a complete and authoritative record, with its scope and contents intentionally fixed to ensure long-term academic and professional reference.
+This repository is part of a sovereign collection of mathematical software and engineering projects. It is maintained in a finalized, future-proof, and stable state. The project is preserved as a complete and authoritative record of autonomous mathematical rendering, with its scope and contents intentionally fixed to ensure long-term academic and professional reference.
 
 ## Supported Versions
 
-As a finalized project, only the version listed below is authoritative:
+As a finalized Phase 6 system, only the version listed below is authoritative:
 
 | Version | Supported |
 | ------- | --------- |
@@ -23,13 +23,13 @@ To document a security concern, communication is facilitated with the project cu
 Submissions include:
   1. A precise and technically accurate description of the identified issue.
   2. Demonstrable steps or technical evidence sufficient to contextualize the finding.
-  3. An explanation of the issue’s relevance within the defined scope of the project.
+  3. An explanation of the issue’s relevance within the sovereign scope of the project.
 
-## Implementation Context: High-Fidelity LaTeX Rendering and Export Engine
+## Implementation Context: Autonomous Mathematical Rendering Engine
 
-This project consists of an advanced mathematical rendering system, utilizing KaTeX for TeX-to-HTML transformation, the HTML5 Canvas 2D API for high-resolution rasterization, and specialized binary encoders for multi-format exports including PDF, EMF, and WMF.
+LATEXRENDER is a high-performance, client-side mathematical software package. It features a sovereign rendering architecture that achieves 100% dependency-free TeX processing. The engine utilizes a locally vendored KaTeX instance for DOM transformation, coupled with a multimodal export pipeline that employs hand-rolled binary encoders for 14 distinct formats, including a custom PDF 1.4 compiler and native Windows Metafile (EMF/WMF) generators.
 
--   **Scope Limitation**: This policy applies exclusively to the documentation, code, and asset manifests contained within this repository and does not extend to the browser runtime environments, local storage mechanisms, or the vendored KaTeX library.
+-   **Scope Limitation**: This policy applies exclusively to the documentation, source code, and logic manifests contained within this repository and does not extend to the browser runtime environments, local storage persistence, or the vendored mathematical core.
 
 ## Technical Integrity Statement
 
@@ -37,4 +37,5 @@ This repository is preserved as a fixed academic and engineering project. Securi
 
 ---
 
-*This document defines the security posture of a finalized mathematical software project.*
+*This document defines the security posture of an autonomous mathematical software project.*
+
