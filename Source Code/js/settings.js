@@ -1,7 +1,19 @@
-// settings.js
-// Manages the global state for user-defined render settings.
-// This allows the user to customize the appearance of the output
-// before exporting.
+/**
+ * File: js/settings.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Configuration state manager for the LATEXRENDER application. This module
+ * maintains the global settings for typography, color schemes, and
+ * document layout, providing a reactive interface that synchronizes
+ * the UI control panel with the live rendering engine.
+ */
 
 const Settings = (function() {
     let state = {
