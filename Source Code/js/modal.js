@@ -1,5 +1,19 @@
-// modal.js
-// Handles the custom confirmation modal for the application.
+/**
+ * File: js/modal.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Modal dialog controller for the LATEXRENDER application. Manages the
+ * display and lifecycle of custom confirmation dialogs, handling user
+ * input via mouse and keyboard (Escape key) to facilitate secure state
+ * changes within the interface.
+ */
 
 const Modal = (function() {
     let overlay = null;
