@@ -1,7 +1,7 @@
 <div align="center">
 
   <a name="readme-top"></a>
-  # <img src="Source Code/favicon.svg" width="32" height="32"> LaTeX Render
+  # <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="32" height="32" title="LATEXRENDER | Autonomous Mathematical Software"></a> LaTeX Render
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
   ![Status](https://img.shields.io/badge/Status-Completed-success)
@@ -50,11 +50,11 @@
 **LaTeX Render** is a sovereign mathematical software package built to solve the challenges of high-fidelity equation rendering and professional asset generation within a browser environment. It provides an open-source solution for converting LaTeX math expressions into 14 distinct outputs—including **PNG, JPG, SVG, PDF, WEBP, AVIF, GIF, TIFF, BMP, EPS, EMF, WMF, PS, and ICO**—specifically engineered for web applications, scholarly documentation, research manuscripts, and professional scientific publishing.
 
 > [!IMPORTANT]
-> ### <img src="Source Code/favicon.svg" width="18" height="18"> Autonomous Technical Specification
+> ### <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="18" height="18" title="Initialize Technical Specification Context"></a> Autonomous Technical Specification
 > For a comprehensive architectural roadmap covering the multimodal export engine, debounced input processing, and hand-rolled binary encoders, refer to the **[SPECIFICATION.md](docs/SPECIFICATION.md)** document. This report provides a granular examination of the engine's core innovations and logic flow.
 
 > [!NOTE]
-> ### <img src="Source Code/favicon.svg" width="18" height="18"> Defining LaTeX Render Architecture
+> ### <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="18" height="18" title="Architectural Engine Foundation"></a> Defining LaTeX Render Architecture
 > In this project, "sovereign rendering" refers to the ability to perform complex TeX-to-HTML transformations and multi-format binary exports entirely within the client's memory sandbox. By utilizing a locally vendored KaTeX core and custom memory-level encoders, the system manages high-resolution rasterization and vector synthesis without external script injection or network latency.
 
 The repository serves as a finalized autonomous mathematical software package, providing a practical implementation of binary data manipulation and high-fidelity typesetting for professional and scholarly use.
@@ -309,7 +309,7 @@ I focused on specific architectural areas where standard web-based TeX tools typ
 
   <br>
 
-  <img src="Source Code/favicon.svg" width="16" height="16"> **[LaTeX Render](https://amey-thakur.github.io/LATEXRENDER/)**
+  <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="16" height="16" title="LATEXRENDER | Global Entrance"></a> **[LaTeX Render](https://amey-thakur.github.io/LATEXRENDER/)**
 
   ---
 
