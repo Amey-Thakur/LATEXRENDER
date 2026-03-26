@@ -1,4 +1,19 @@
-/* main.css - Core layout and global typography system. */
+/*
+    File: css/main.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Core layout and global design system for the LATEXRENDER application.
+    Establishes the Graphite dark and light theme tokens, typography defaults,
+    responsive workspace layout, and primary component styling for headers,
+    panes, and icons.
+*/
 
 :root {
     /* Color Palette - Graphite Dark Theme (Default) */
