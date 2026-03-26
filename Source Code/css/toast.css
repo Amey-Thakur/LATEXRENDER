@@ -1,7 +1,18 @@
-/* toast.css
- * Premium floating notification system.
- * Matches the graphite theme with subtle animations and transparency.
- */
+/*
+    File: css/toast.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the application's floating notification system.
+    Implements pull-shaped toast alerts with smooth entry/exit animations
+    and premium shadow effects to provide non-intrusive user feedback.
+*/
 
 .toast-container {
     position: fixed;
