@@ -1,7 +1,20 @@
-// icon.js
-// Handles generation of Windows ICO format binaries.
-// Renders the equation into a centered 256x256 square canvas,
-// then wraps the PNG payload inside the ICO directory structure.
+/**
+ * File: js/formats/icon.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Windows Icon (ICO) export module for the LATEXRENDER application.
+ * Renders mathematical expressions into high-resolution 256x256 square
+ * canvases and encapsulates the resulting PNG payloads within a 
+ * manually constructed ICO directory structure for system-level
+ * compatibility.
+ */
 
 const IconExport = (function() {
 
