@@ -1,6 +1,19 @@
-// toast.js
-// Lightweight, premium notification system.
-// Displays temporary messages near the bottom of the screen.
+/**
+ * File: js/toast.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Toast notification controller for the LATEXRENDER application. Manages
+ * the dynamic creation, display, and automated cleanup of lightweight
+ * UI alerts, providing immediate visual feedback for user actions such
+ * as successful exports and clipboard copies.
+ */
 
 const Toast = (function() {
     let container = null;
