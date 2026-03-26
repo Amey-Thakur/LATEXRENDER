@@ -1,6 +1,18 @@
-/* tooltips.css
- * Premium floating tooltip system.
- */
+/*
+    File: css/tooltips.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the application's premium tooltip system. Defines the
+    presentation, positioning, and animation of floating descriptive labels
+    for UI components to enhance interface accessibility and user guidance.
+*/
 
 .tooltip {
     position: fixed;
