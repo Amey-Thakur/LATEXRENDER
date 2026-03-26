@@ -15,7 +15,7 @@
 
 # Dependency and build directories
 node_modules/
-dist/
+# dist/ (Allowed for optimized bundles)
 build/
 .env
 .npm

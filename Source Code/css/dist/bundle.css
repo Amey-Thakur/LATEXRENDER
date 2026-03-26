@@ -1,0 +1,1208 @@
+/*
+    File: css/main.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Core layout and global design system for the LATEXRENDER application.
+    Establishes the Graphite dark and light theme tokens, typography defaults,
+    responsive workspace layout, and primary component styling for headers,
+    panes, and icons.
+*/
+
+:root {
+    /* Color Palette - Graphite Dark Theme (Default) */
+    --bg-surface: #0E1116;       /* Deepest background */
+    --bg-panel: #161B22;         /* Slightly lighter panels */
+    --border-subtle: #30363D;    /* Thin dividers */
+    --text-primary: #E6EDF3;     /* Main reading text */
+    --text-secondary: #848D97;   /* Muted text (line numbers, hints) */
+    --accent-blue: #2F81F7;      /* Primary actionable color */
+    --accent-red: #F85149;       /* Syntactical errors / alerts */
+    
+    /* Icon Colors */
+    --icon-color: #848D97;
+    --icon-hover: #E6EDF3;
+
+    /* Typography */
+    --font-ui: "Play", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-mono: "Play", ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* Spacing & Layout */
+    --radius-md: 6px;
+    --radius-lg: 12px;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+    --bg-surface: #FFFFFF;
+    --bg-panel: #F6F8FA;
+    --border-subtle: #D0D7DE;
+    --text-primary: #1F2328;
+    --text-secondary: #656D76;
+    --accent-blue: #0969DA;
+    --icon-color: #656D76;
+    --icon-hover: #1F2328;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+body {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Global Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    border: 3px solid var(--bg-surface);
+    transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
+}
+
+/* Header Navbar */
+.app-header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.brand-logotype {
+    font-family: "KaTeX_Main", "Times New Roman", serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: 0em;
+    display: flex;
+    align-items: baseline;
+    color: var(--text-primary);
+    user-select: none;
+    cursor: default;
+}
+
+.latex-logo .a {
+    text-transform: uppercase;
+    font-size: 0.70em;
+    margin-left: -0.36em;
+    margin-right: -0.15em;
+    position: relative;
+    top: -0.32em;
+}
+
+.latex-logo .e {
+    text-transform: uppercase;
+    margin-left: -0.18em;
+    margin-right: -0.12em;
+    position: relative;
+    top: 0.22em;
+}
+
+.brand-render {
+    font-family: var(--font-ui); /* Sans-serif for the brand identity 'RENDER' part */
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-left: 2px;
+    background: linear-gradient(135deg, var(--text-primary), #848D97);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Inline Brand Styling for Toasts/Messages */
+.brand-inline {
+    display: inline-flex;
+    align-items: baseline;
+    font-weight: 600;
+}
+
+.brand-inline .latex {
+    font-family: "KaTeX_Main", "Times New Roman", serif;
+}
+
+.brand-inline .a {
+    text-transform: uppercase;
+    font-size: 0.70em;
+    margin-left: -0.36em;
+    margin-right: -0.15em;
+    position: relative;
+    top: -0.30em;
+}
+
+.brand-inline .e {
+    text-transform: uppercase;
+    margin-left: -0.18em;
+    margin-right: -0.12em;
+    position: relative;
+    top: 0.20em;
+}
+
+.brand-inline .render {
+    font-family: var(--font-ui);
+    font-weight: 800;
+    margin-left: 1px;
+    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 12px;
+    border-right: 1px solid var(--border-subtle);
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+}
+
+.icon-button.contained {
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px; /* Smoother rounded squares like the screenshot */
+    padding: 10px;
+}
+
+.icon-button:hover {
+    color: var(--icon-hover);
+    background-color: var(--border-subtle);
+}
+
+.icon-button:active {
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Main Workspace */
+.workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Left Pane: Editor */
+.pane-editor {
+    flex: 1;
+    position: relative;
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-surface);
+}
+
+/* Right Pane: Preview */
+.pane-preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-panel);
+    min-width: 0;
+}
+
+/* Responsive Rules: Stack vertically on smaller monitors */
+@media (max-width: 900px) {
+    .workspace {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    .pane-editor {
+        flex: none;
+        height: 250px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+    .pane-controls {
+        flex: none;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+    }
+    .pane-preview {
+        flex: 1;
+        min-height: 400px;
+    }
+}
+/*
+    File: css/animations.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Animation and transition definitions for the LATEXRENDER interface. This
+    stylesheet handles subtle micro-interactions, smooth entrance effects,
+    and physical feedback for interactive elements to ensure a responsive
+    and polished user experience.
+*/
+
+/* Fade in the entire app smoothly on load */
+body {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Smooth color/border transitions for inputs */
+.input-select, .input-text, .input-range {
+    transition: all 0.2s ease;
+}
+
+.input-select:hover, .input-text:hover {
+    border-color: #4b5563;
+}
+
+/* Button physical press effect */
+.btn-primary {
+    transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Preview stage loading physics */
+#preview-container {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, color 0.3s ease;
+}
+
+/* Error banner slide up */
+#error-message {
+    animation: slideUpError 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUpError {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/*
+    File: css/controls.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the configuration sidebar in the LATEXRENDER workspace.
+    Defines the layout and appearance of user control elements, including
+    font selectors, scale sliders, color pickers, and export action buttons,
+    optimized for a cohesive dark-themed UI.
+*/
+
+.pane-controls {
+    width: 280px;
+    background-color: var(--bg-surface);
+    border-left: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.controls-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.controls-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Form Groups Layout */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Native Form Elements Styled */
+.input-select, .input-text {
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-select:focus, .input-text:focus {
+    border-color: var(--accent-blue);
+}
+
+/* Color Pickers */
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-color {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+}
+
+.input-color::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.input-color::-webkit-color-swatch {
+    border: 2px solid var(--border-subtle);
+    border-radius: 50%;
+}
+
+.color-hex {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Range Slider */
+.input-range {
+    width: 100%;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+}
+
+/* Checkbox Toggle */
+.control-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.input-checkbox {
+    accent-color: var(--accent-blue);
+    width: 16px;
+    height: 16px;
+    cursor: inherit;
+}
+
+/* Download Actions */
+.action-box {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #1a6ff0;
+}
+/*
+    File: css/editor.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the LaTeX source editor in the LATEXRENDER application.
+    Focused on providing a distraction-free, code-centric input environment
+    with optimized typography for scientific and mathematical notation.
+*/
+
+.editor-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.editor-container {
+    flex: 1;
+    position: relative;
+    padding: 16px;
+}
+
+#latex-editor {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+}
+
+#latex-editor::placeholder {
+    color: var(--border-subtle);
+}
+
+/*
+    File: css/history.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the persistent formula history drawer in the LATEXRENDER
+    workspace. Manages the layout of history cards, scrolling behavior,
+    and slide-in transitions to facilitate easy retrieval of previous
+    renderings.
+*/
+
+.pane-history {
+    width: 320px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.pane-history.hidden {
+    margin-left: -320px;
+    pointer-events: none;
+}
+
+.history-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.2s;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.btn-text:hover {
+    color: var(--accent-red);
+    background-color: rgba(248, 81, 73, 0.05);
+}
+
+.history-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* History Entry Cards */
+.history-item {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.history-item:hover {
+    border-color: var(--accent-blue);
+    background-color: rgba(47, 129, 247, 0.05);
+}
+
+.history-item .item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.history-item .item-content {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px 0;
+}
+
+.history-item .btn-delete {
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--accent-red);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.history-item:hover .btn-delete {
+    opacity: 1;
+}
+
+.history-item .btn-delete:hover {
+    background-color: rgba(248, 81, 73, 0.1);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Responsive adjustment */
+@media (max-width: 1200px) {
+    .pane-history {
+        position: absolute;
+        height: calc(100vh - 60px);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    }
+}
+/*
+    File: css/modal.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the application's modal dialog system. Provides a premium,
+    theme-consistent overlay for confirmation dialogs and alerts, featuring
+    blurred backdrops and refined typography for high-impact user
+    communications.
+*/
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.modal-box {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    width: 380px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-overlay.hidden .modal-box {
+    transform: scale(0.9);
+}
+
+.modal-box h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.modal-box p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-secondary, .btn-danger {
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-subtle);
+}
+
+.btn-danger {
+    background-color: var(--accent-red);
+    color: #FFFFFF;
+}
+
+.btn-danger:hover {
+    background-color: #f85149dd;
+}
+/*
+    File: css/preview.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the rendered output stage in the LATEXRENDER application.
+    Manages the visual properties of the "paper" canvas, equation centering,
+    KaTeX font inheritance, and the error reporting banner.
+*/
+
+.preview-header {
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.preview-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px; /* Increased breathing room */
+    overflow: auto;
+    position: relative;
+    background-color: var(--bg-panel);
+}
+
+/* The actual white "paper" where the equation lives */
+#preview-container {
+    background-color: #FFFFFF;
+    color: #000000;
+    /* padding is controlled by JS renderer */
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    min-width: 100px;
+    min-height: 100px;
+    width: fit-content;
+    max-width: none;
+    display: inline-block;
+    vertical-align: middle;
+    transition: box-shadow 0.2s ease;
+    flex-shrink: 0; /* Ensure it doesn't compress in flex centered layouts */
+}
+
+/* Let KaTeX manage its own internal sizing and clipping for advanced SVG parts like square roots */
+#preview-container .katex-display {
+    margin: 0 !important;
+}
+
+/* Force KaTeX to strictly inherit the user's chosen Typography font across all math tokens */
+#preview-container .katex,
+#preview-container .katex * {
+    font-family: inherit !important;
+}
+
+/* Center while allowing overflow in the flex container */
+.preview-stage::before,
+.preview-stage::after {
+    content: '';
+    margin: auto;
+}
+
+/* Error message banner */
+#error-message {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    background-color: var(--accent-red);
+    color: #FFFFFF;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    display: none; /* Hidden down by default in runtime */
+    box-shadow: 0 8px 16px rgba(248, 81, 73, 0.2);
+    z-index: 10;
+}
+/*
+    File: css/toast.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the application's floating notification system.
+    Implements pull-shaped toast alerts with smooth entry/exit animations
+    and premium shadow effects to provide non-intrusive user feedback.
+*/
+
+.toast-container {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: auto;
+    animation: toast-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               toast-out 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.6s forwards;
+}
+
+.toast svg {
+    color: var(--accent-blue);
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toast-out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
+/*
+    File: css/toolbar.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the floating math symbol palette in the LATEXRENDER
+    application. Controls the layout of the symbol grid, search
+    functionality, and navigation anchors, featuring smooth scaling
+    transitions and thematic integration with the core workspace.
+*/
+
+.symbol-palette {
+    position: absolute;
+    top: 56px; /* Just beneath the editor-header */
+    right: 16px;
+    width: 480px; /* Increased to fit full-width math structures */
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top right;
+}
+
+.symbol-palette.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96) translateY(-10px);
+}
+
+.palette-search-container {
+    padding: 12px;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.palette-search {
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 8px 12px 8px 32px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: var(--font-ui);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.palette-search:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(47, 129, 247, 0.2);
+}
+
+.palette-search::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-icon {
+    position: absolute;
+    left: 22px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+/* Continuous Scrollable Area */
+.palette-main {
+    display: flex;
+    flex-direction: column;
+    height: 380px; 
+}
+
+.palette-content {
+    flex: 1;
+    padding: 12px 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    background: var(--bg-panel);
+    scroll-behavior: smooth;
+}
+
+.palette-content::-webkit-scrollbar {
+    width: 6px;
+}
+.palette-content::-webkit-scrollbar-thumb {
+    background-color: var(--border-subtle);
+    border-radius: 4px;
+}
+
+.palette-section-title {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin: 16px 0 8px 0;
+}
+.palette-section-title:first-child {
+    margin-top: 4px;
+}
+
+.palette-grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 8px;
+}
+
+.symbol-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symbol-btn:hover {
+    background-color: var(--bg-surface);
+    border-color: var(--border-subtle);
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+/* Bottom Nav Anchor Bar */
+.palette-bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
+    padding: 6px 8px;
+}
+
+.palette-nav-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.palette-nav-icon:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+/*
+    File: css/tooltips.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the application's premium tooltip system. Defines the
+    presentation, positioning, and animation of floating descriptive labels
+    for UI components to enhance interface accessibility and user guidance.
+*/
+
+.tooltip {
+    position: fixed;
+    z-index: 9999;
+    padding: 6px 10px;
+    background-color: #1c2128;
+    color: #E6EDF3;
+    font-family: "Play", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid #30363D;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+}
+
+.tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.tooltip.pos-bottom::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: 5px solid #30363D;
+}
+
+.tooltip.pos-top::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 5px solid #30363D;
+}
