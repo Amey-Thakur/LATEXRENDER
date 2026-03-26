@@ -1,8 +1,21 @@
-// metafile.js
-// Support for Windows Metafile formats (EMF, WMF).
-// Embeds a high-resolution bitmap raster into the metafile
-// container using standard GDI record structures with
-// raw BGR pixel data.
+/**
+ * File: js/formats/metafile.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), Windows GDI Specification
+ * 
+ * Description:
+ * Windows Metafile (EMF and WMF) export module for the LATEXRENDER 
+ * application. Implements a native binary encoder that translates 
+ * rendered LaTeX bitmaps into GDI-compliant metafile records, 
+ * incorporating high-resolution DIB (Device Independent Bitmap) 
+ * payloads and precise memory structures for lossless integration 
+ * into desktop publishing environments.
+ */
 
 const MetafileExport = (function() {
 
