@@ -50,11 +50,11 @@
 **LaTeX Render** is a sovereign mathematical software package built to solve the challenges of high-fidelity equation rendering and professional asset generation within a browser environment. It provides an open-source solution for converting LaTeX math expressions into 14 distinct outputs—including **PNG, JPG, SVG, PDF, WEBP, AVIF, GIF, TIFF, BMP, EPS, EMF, WMF, PS, and ICO**—specifically engineered for web applications, scholarly documentation, research manuscripts, and professional scientific publishing.
 
 > [!IMPORTANT]
-> ### 📑 Autonomous Technical Specification
+> ### <img src="Source Code/favicon.svg" width="18" height="18"> Autonomous Technical Specification
 > For a comprehensive architectural roadmap covering the multimodal export engine, debounced input processing, and hand-rolled binary encoders, refer to the **[SPECIFICATION.md](docs/SPECIFICATION.md)** document. This report provides a granular examination of the engine's core innovations and logic flow.
 
 > [!NOTE]
-> ### 📐 Defining LaTeX Render Architecture
+> ### <img src="Source Code/favicon.svg" width="18" height="18"> Defining LaTeX Render Architecture
 > In this project, "sovereign rendering" refers to the ability to perform complex TeX-to-HTML transformations and multi-format binary exports entirely within the client's memory sandbox. By utilizing a locally vendored KaTeX core and custom memory-level encoders, the system manages high-resolution rasterization and vector synthesis without external script injection or network latency.
 
 The repository serves as a finalized autonomous mathematical software package, providing a practical implementation of binary data manipulation and high-fidelity typesetting for professional and scholarly use.
@@ -110,41 +110,41 @@ The engine follows specific **system design patterns** to maintain stability:
 ```python
 LATEXRENDER/
 │
-├── .github/                            # Global GitHub configuration & workflows
-├── docs/                               # Formal academic & technical documentation
-│   └── SPECIFICATION.md                # System engineering & architectural roadmap
+├── .github/                             # Global GitHub configuration & workflows
+├── docs/                                # Formal academic & technical documentation
+│   └── SPECIFICATION.md                 # System engineering & architectural roadmap
 │
-├── screenshots/      # High-fidelity visual verification gallery
+├── screenshots/                         # High-fidelity visual verification gallery
 │   ├── social_identity_preview.png      # LATEXRENDER Social Identity branding
 │   ├── application_interface.png        # High-performance editor landing
 │   ├── attention_mechanism_equation.png # Real-time TeX-to-HTML rendering
-│   ├── attention_mechanism_variant.png # Multimodal visual verification
-│   ├── recent_history_tracking.png     # Session-based persistence matrix
-│   ├── math_symbol_palette.png         # Cursor-aware symbol insertion palette
-│   └── attention_formula_output.png    # Production-grade binary export sample
+│   ├── attention_mechanism_variant.png  # Multimodal visual verification
+│   ├── recent_history_tracking.png      # Session-based persistence matrix
+│   ├── math_symbol_palette.png          # Cursor-aware symbol insertion palette
+│   └── attention_formula_output.png     # Production-grade binary export sample
 │
-├── Source Code/                        # Integrated mathematical application layer
-│   ├── css/                            # Thematic design & hardware-accelerated styling
-│   │   ├── dist/                       # Optimized CSS bundles for production delivery
-│   │   ├── main.css                    # Core shell aesthetic & layout tokens
-│   │   └── ...                         # Categorized UI/UX styling indices
-│   ├── js/                             # Decoupled ES6 modular logic engine
-│   │   ├── dist/                       # Optimized JS bundles for production delivery
-│   │   ├── formats/                    # Hand-rolled binary export encoders
-│   │   └── ...                         # Shared utility & interface controllers
-│   ├── assets/                         # Global system resources & vendored engines
-│   │   └── katex/                      # Locally vendored KaTeX v0.16.38 module
-│   ├── index.html                      # System entrance & sovereign bootstrap index
-│   ├── manifest.json                   # Web Application manifest & PWA identity
-│   └── sw.js                           # Service Worker & offline cache logic
+├── Source Code/                         # Integrated mathematical application layer
+│   ├── css/                             # Thematic design & hardware-accelerated styling
+│   │   ├── dist/                        # Optimized CSS bundles for production delivery
+│   │   ├── main.css                     # Core shell aesthetic & layout tokens
+│   │   └── ...                          # Categorized UI/UX styling indices
+│   ├── js/                              # Decoupled ES6 modular logic engine
+│   │   ├── dist/                        # Optimized JS bundles for production delivery
+│   │   ├── formats/                     # Hand-rolled binary export encoders
+│   │   └── ...                          # Shared utility & interface controllers
+│   ├── assets/                          # Global system resources & vendored engines
+│   │   └── katex/                       # Locally vendored KaTeX v0.16.38 module
+│   ├── index.html                       # System entrance & sovereign bootstrap index
+│   ├── manifest.json                    # Web Application manifest & PWA identity
+│   └── sw.js                            # Service Worker & offline cache logic
 │
-├── .gitattributes                      # Repository attribute & normalization
-├── .gitignore                          # Development exclusion & build logic
-├── CITATION.cff                        # Scholarly Citation Metadata
-├── codemeta.json                       # Machine-Readable Software Metadata
-├── SECURITY.md                         # Security protocols & disclosure policy
-├── LICENSE                             # MIT Open Source License distribution
-└── README.md                           # Primary entrance & architectural hub
+├── .gitattributes                       # Repository attribute & normalization
+├── .gitignore                           # Development exclusion & build logic
+├── CITATION.cff                         # Scholarly Citation Metadata
+├── codemeta.json                        # Machine-Readable Software Metadata
+├── SECURITY.md                          # Security protocols & disclosure policy
+├── LICENSE                              # MIT Open Source License distribution
+└── README.md                            # Primary entrance & architectural hub
 ```
 
 ---
@@ -309,7 +309,7 @@ I focused on specific architectural areas where standard web-based TeX tools typ
 
   <br>
 
-  📐 **[LaTeX Render](https://amey-thakur.github.io/LATEXRENDER/)**
+  <img src="Source Code/favicon.svg" width="16" height="16"> **[LaTeX Render](https://amey-thakur.github.io/LATEXRENDER/)**
 
   ---
 
