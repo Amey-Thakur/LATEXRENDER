@@ -1,0 +1,37 @@
+# LATEXRENDER
+# Persistence and attribute configuration for repository integrity
+
+# Line ending normalization
+* text=auto
+
+# Core source and documentation
+*.md text eol=lf diff=markdown
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.txt text eol=lf
+*.svg text eol=lf
+*.eps text eol=lf
+*.ps text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Binary asset management
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.bmp binary
+*.tiff binary
+*.pdf binary
+*.ico binary
+*.emf binary
+*.wmf binary
+
+# Project documentation metadata
+README.md text eol=lf diff=markdown
