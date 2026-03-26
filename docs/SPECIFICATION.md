@@ -18,7 +18,7 @@ graph TD
     Settings --> Renderer
     Renderer --> Export["Multimodal Export Engine"]
     Export --> Format["Binary Encoders (14 Formats)"]
-    Format --> Output["PDF, SVG, EMF, WMF, PNG, etc."]
+    Format --> Output["PDF, SVG, EMF, WMF, PNG, JPG, WEBP, AVIF, GIF, BMP, TIFF, EPS, PS, ICO"]
     Link --> User
     URL["URL Parameter Detection"] --> Share
     Share --> Editor
