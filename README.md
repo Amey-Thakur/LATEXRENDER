@@ -79,7 +79,7 @@ The engine follows specific **system design patterns** to maintain stability:
 | Feature | Description |
 |---------|-------------|
 | **Sovereign Engine** | Achieves **100% Independence** via a locally vendored KaTeX core and isolated processing. |
-| **Multimodal Export** | Supports **14 Distinct Formats** including PDF, SVG, EMF, WMF, PNG, and EPS via native encoders. |
+| **Multimodal Export** | Supports **14 Distinct Formats** including **PNG, JPG, SVG, PDF, WEBP, AVIF, GIF, TIFF, BMP, EPS, EMF, WMF, PS, and ICO** via native binary encoders. |
 | **Binary Synthesis** | Implements **Hand-Rolled Encoders** for complex document structures and binary metadata. |
 | **Debounced Registry** | Visual parsing thread operating on a **150ms debounce** to ensure zero-latency interaction. |
 | **Symbol Palette** | Categorized library with **Cursor-Aware Insertion** logic for complex TeX structures. |
