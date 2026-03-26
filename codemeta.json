@@ -1,0 +1,40 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "name": "LaTeX Render",
+    "description": "A high-fidelity mathematical expression rendering and export engine powered by KaTeX. This zero-dependency system provides real-time TeX-to-HTML transformation, session-based equation history persistence, and a multi-format binary export pipeline supporting Raster (PNG, JPG, WEBP), Vector (SVG, EPS, PS), and Document (PDF, ICO, EMF, WMF) outputs with precise memory-level encoding.",
+    "identifier": "LATEXRENDER",
+    "license": "https://spdx.org/licenses/MIT.html",
+    "programmingLanguage": [
+        "JavaScript",
+        "CSS",
+        "HTML"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "givenName": "Amey",
+            "familyName": "Thakur",
+            "id": "https://orcid.org/0000-0001-5644-1575"
+        }
+    ],
+    "dateReleased": "2026-03-16",
+    "codeRepository": "https://github.com/Amey-Thakur/LATEXRENDER",
+    "developmentStatus": "complete",
+    "runtimePlatform": [
+        "Modern Evergreen Browsers",
+        "Canvas 2D API",
+        "Web Storage API",
+        "KaTeX"
+    ],
+    "applicationCategory": "Mathematical Software / Academic Utility",
+    "keywords": [
+        "LaTeX",
+        "Mathematical Rendering",
+        "KaTeX",
+        "Export Engine",
+        "Equation Editor",
+        "Vector Graphics",
+        "Scientific Publishing"
+    ]
+}
