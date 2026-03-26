@@ -1,8 +1,19 @@
-/* controls.css
- * Styling for the settings sidebar pane.
- * Ensures the controls look clean and native, matching the dark theme.
- * Keeps inputs easily accessible without drawing focus from the math.
- */
+/*
+    File: css/controls.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the configuration sidebar in the LATEXRENDER workspace.
+    Defines the layout and appearance of user control elements, including
+    font selectors, scale sliders, color pickers, and export action buttons,
+    optimized for a cohesive dark-themed UI.
+*/
 
 .pane-controls {
     width: 280px;
