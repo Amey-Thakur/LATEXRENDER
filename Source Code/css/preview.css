@@ -1,9 +1,18 @@
-/* preview.css
- * Styling for the rendered equation output stage.
- * Focuses on centering the output and providing a high-contrast
- * white/clean background stage for the math to shine.
- * Also handles error message alerts.
- */
+/*
+    File: css/preview.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the rendered output stage in the LATEXRENDER application.
+    Manages the visual properties of the "paper" canvas, equation centering,
+    KaTeX font inheritance, and the error reporting banner.
+*/
 
 .preview-header {
     height: 48px;
