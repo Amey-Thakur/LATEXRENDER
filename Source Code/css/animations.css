@@ -1,7 +1,19 @@
-/* animations.css
- * Subtle micro-interactions and transition states for the UI.
- * Designed to feel responsive without distracting from the math.
- */
+/*
+    File: css/animations.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Animation and transition definitions for the LATEXRENDER interface. This
+    stylesheet handles subtle micro-interactions, smooth entrance effects,
+    and physical feedback for interactive elements to ensure a responsive
+    and polished user experience.
+*/
 
 /* Fade in the entire app smoothly on load */
 body {
