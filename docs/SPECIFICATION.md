@@ -59,4 +59,4 @@ graph TD
 
 ---
 
-*Technical Specification | Vanilla JS | Version 1.0*
+*Technical Specification | Autonomous Mathematical Rendering Engine | Version 1.0*
