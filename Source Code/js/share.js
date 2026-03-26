@@ -1,5 +1,19 @@
-// share.js
-// Handles generating and copying shareable links for the current LaTeX formula.
+/**
+ * File: js/share.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), Web Clipboard API
+ * 
+ * Description:
+ * URL-based formula sharing module for the LATEXRENDER application.
+ * Encodes mathematical expressions into Base64 strings to generate
+ * shareable links, while providing the logic to automatically decode
+ * and load formulas from URL parameters upon application initialization.
+ */
 
 const Share = (function() {
     function init(buttonSelector) {
