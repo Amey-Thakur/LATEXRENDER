@@ -1,9 +1,20 @@
-// document.js
-// Handles PDF document exports natively.
-// Implements a lightweight, hand-coded PDF 1.4 compiler that
-// encapsulates the rendered equation as a JPEG image asset
-// into a single-page document. Writes binary dictionary objects
-// with correct cross-reference byte offsets.
+/**
+ * File: js/formats/document.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), PDF 1.4 Specification
+ * 
+ * Description:
+ * Specialized document export module for the LATEXRENDER application.
+ * Implements a lightweight, native PDF 1.4 compiler that encapsulates
+ * rendered LaTeX expressions as JPEG assets within structured binary
+ * objects, calculating precise cross-reference byte offsets to
+ * generate standards-compliant PDF files without external dependencies.
+ */
 
 const DocumentExport = (function() {
 
