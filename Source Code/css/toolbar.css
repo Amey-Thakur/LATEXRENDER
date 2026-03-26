@@ -1,8 +1,19 @@
-/* toolbar.css 
- * Premium floating math symbol palette for LATEXRENDER.
- * Designed to seamlessly blend with the graphite dark theme
- * while providing an intuitive vector-like grid for math operators.
- */
+/*
+    File: css/toolbar.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the floating math symbol palette in the LATEXRENDER
+    application. Controls the layout of the symbol grid, search
+    functionality, and navigation anchors, featuring smooth scaling
+    transitions and thematic integration with the core workspace.
+*/
 
 .symbol-palette {
     position: absolute;
