@@ -1,8 +1,20 @@
-// editor.js
-// Handles the text input area where the user types LaTeX code.
-// Includes debouncing to prevent excessive rendering calls and
-// basic text area behaviors like auto-resizing or tab handling
-// if needed in the future.
+/**
+ * File: js/editor.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * LaTeX source editor controller for the LATEXRENDER application.
+ * Manages the text input interface, implements debounced change
+ * detection for optimized rendering performance, and provides
+ * an observable interface for state synchronization across
+ * the workspace.
+ */
 
 const Editor = (function() {
     let inputArea = null;
