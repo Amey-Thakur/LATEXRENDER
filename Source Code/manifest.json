@@ -27,11 +27,53 @@
     ],
     "screenshots": [
         {
-            "src": "../screenshots/application_interface.png",
+            "src": "assets/screenshots/social_identity_preview.png",
             "sizes": "1920x1080",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "LATEXRENDER Interface"
+            "label": "LATEXRENDER Social Identity"
+        },
+        {
+            "src": "assets/screenshots/application_interface.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "LATEXRENDER Workspace"
+        },
+        {
+            "src": "assets/screenshots/attention_mechanism_equation.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Real-Time TeX Rendering"
+        },
+        {
+            "src": "assets/screenshots/math_symbol_palette.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Interactive Symbol Palette"
+        },
+        {
+            "src": "assets/screenshots/recent_history_tracking.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Localized Rendering History"
+        },
+        {
+            "src": "assets/screenshots/attention_formula_output.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Production-Grade Binary Export"
+        },
+        {
+            "src": "assets/screenshots/attention_mechanism_variant.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Multimodal Rendering Verification"
         }
     ]
 }

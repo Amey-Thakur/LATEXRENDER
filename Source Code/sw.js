@@ -28,7 +28,14 @@ const ASSETS = [
     './vendor/katex/fonts/KaTeX_Size1-Regular.woff2',
     './vendor/katex/fonts/KaTeX_Size2-Regular.woff2',
     './vendor/katex/fonts/KaTeX_Size3-Regular.woff2',
-    './vendor/katex/fonts/KaTeX_Size4-Regular.woff2'
+    './vendor/katex/fonts/KaTeX_Size4-Regular.woff2',
+    './assets/screenshots/social_identity_preview.png',
+    './assets/screenshots/application_interface.png',
+    './assets/screenshots/attention_mechanism_equation.png',
+    './assets/screenshots/math_symbol_palette.png',
+    './assets/screenshots/recent_history_tracking.png',
+    './assets/screenshots/attention_formula_output.png',
+    './assets/screenshots/attention_mechanism_variant.png'
 ];
 
 self.addEventListener('install', (event) => {
