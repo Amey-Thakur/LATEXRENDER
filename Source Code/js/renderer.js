@@ -1,6 +1,20 @@
-// renderer.js
-// Integrates with the vendored KaTeX library. Takes raw LaTeX string
-// input and injects the rendered HTML into the preview stage DOM node.
+/**
+ * File: js/renderer.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), KaTeX
+ * 
+ * Description:
+ * Core rendering engine integration for the LATEXRENDER application.
+ * This module interface with the vendored KaTeX library to transform
+ * raw LaTeX strings into structured HTML, applying real-time stylistic
+ * configurations and handling synchronous error reporting for invalid
+ * mathematical syntax.
+ */
 
 const Renderer = (function() {
     let outputContainer = null;
