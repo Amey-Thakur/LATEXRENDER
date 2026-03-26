@@ -309,7 +309,7 @@ I focused on specific architectural areas where standard web-based TeX tools typ
 
   <br>
 
-  <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="16" height="16" title="LATEXRENDER | Global Entrance"></a> **[LaTeX Render](https://amey-thakur.github.io/LATEXRENDER/)**
+  <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="24" height="24" title="LATEXRENDER | Global Entrance"></a> **[LaTeX Render](https://amey-thakur.github.io/LATEXRENDER/)**
 
   ---
 
