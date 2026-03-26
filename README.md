@@ -8,7 +8,7 @@
   [![Technology](https://img.shields.io/badge/Technology-Vanilla%20JS%20%7C%20KaTeX-blueviolet)](https://github.com/Amey-Thakur/LATEXRENDER)
   [![Developed by Amey Thakur](https://img.shields.io/badge/Developed%20by-Amey%20Thakur-blue.svg)](https://github.com/Amey-Thakur/LATEXRENDER)
 
-  LATEXRENDER is a high-fidelity, autonomous mathematical expression rendering and export engine powered by a sovereign client-side architecture and custom-written binary encoders for 14 distinct formats. It provides an open-source solution for converting LaTeX math expressions into PNG, JPG, SVG, PDF, WEBP, AVIF, GIF, TIFF, BMP, EPS, EMF, WMF, PS, and ICO formats, specifically engineered for web applications, scholarly documentation, research manuscripts, and professional scientific publishing.
+  Autonomous mathematical software for high-fidelity LaTeX rendering and multimodal binary asset generation.
 
   **[Source Code](Source%20Code/)** &nbsp;·&nbsp; **[Technical Specification](docs/SPECIFICATION.md)** &nbsp;·&nbsp; **[Live Demo](https://amey-thakur.github.io/LATEXRENDER/)**
 
@@ -47,7 +47,7 @@
 <a name="overview"></a>
 ## Overview
 
-**LaTeX Render** is a sovereign mathematical software package built to solve the challenges of high-fidelity equation rendering and professional asset generation within a browser environment. While standard TeX-to-HTML tools often rely on external CDNs or heavy frameworks, this engine implements a **100% dependency-free** architecture, ensuring mathematical expressions are rendered and exported with total data isolation and deterministic precision.
+**LaTeX Render** is a sovereign mathematical software package built to solve the challenges of high-fidelity equation rendering and professional asset generation within a browser environment. It provides an open-source solution for converting LaTeX math expressions into 14 distinct outputs—including **PNG, JPG, SVG, PDF, WEBP, AVIF, GIF, TIFF, BMP, EPS, EMF, WMF, PS, and ICO**—specifically engineered for web applications, scholarly documentation, research manuscripts, and professional scientific publishing.
 
 > [!IMPORTANT]
 > ### 📑 Autonomous Technical Specification
