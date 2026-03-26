@@ -1,8 +1,20 @@
-// vector.js
-// Handles scalable vector exports: SVG, EPS, and PS.
-// SVG uses native DOM serialization with inlined CSS.
-// EPS and PS embed a high-resolution raster payload using
-// standard PostScript image operators with hex-encoded RGB data.
+/**
+ * File: js/formats/vector.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), PostScript Specification
+ * 
+ * Description:
+ * Scalable vector export module for the LATEXRENDER application.
+ * Implements SVG serialization with inlined CSS for web-ready equations,
+ * while providing a native PostScript Level 2 encoder to generate EPS
+ * and PS files with hex-encoded RGB image operators for high-fidelity
+ * integration into specialized design software.
+ */
 
 const VectorExport = (function() {
 
