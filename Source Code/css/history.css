@@ -1,7 +1,19 @@
-/* history.css
- * Styling for the persistent history drawer.
- * Matches the graphite theme with clean typography and spacious cards.
- */
+/*
+    File: css/history.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the persistent formula history drawer in the LATEXRENDER
+    workspace. Manages the layout of history cards, scrolling behavior,
+    and slide-in transitions to facilitate easy retrieval of previous
+    renderings.
+*/
 
 .pane-history {
     width: 320px;
