@@ -1,8 +1,20 @@
-// raster.js
-// High-performance raster rendering engine.
-// Uses the shared Capture pipeline to produce a high-resolution
-// canvas, then exports to standard browser formats (PNG, JPG,
-// WEBP, AVIF, GIF) and custom binary formats (BMP, TIFF).
+/**
+ * File: js/formats/raster.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * High-performance raster export engine for the LATEXRENDER application.
+ * Leverages the HTML5 Canvas API to generate high-resolution image
+ * assets in standard web formats (PNG, JPG, WEBP, AVIF, GIF) while
+ * providing custom binary encoders for uncompressed 32-bit BMP and
+ * multi-channel TIFF files.
+ */
 
 const RasterExport = (function() {
 
