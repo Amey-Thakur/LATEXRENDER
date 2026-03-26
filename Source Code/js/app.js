@@ -1,7 +1,19 @@
-// app.js
-// Application bootstrap and initialization sequence.
-// Connects the editor events to the renderer output.
-// EnsuresDOM is fully loaded before binding listeners to elements.
+/**
+ * File: js/app.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Application bootstrap and orchestration script for LATEXRENDER.
+ * Initializes core modules including the editor, renderer, history,
+ * and settings, while establishing the event-driven communication
+ * between the UI components and the rendering engine.
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Initialize core modules with DOM selectors
