@@ -1,6 +1,19 @@
-// history.js
-// Manages a local session history of rendered LaTeX equations.
-// Persists structured objects with timestamps and enables direct re-rendering.
+/**
+ * File: js/history.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), LocalStorage API
+ * 
+ * Description:
+ * Session history manager for the LATEXRENDER application. Handles the
+ * persistence of previously rendered LaTeX equations using the browser's
+ * LocalStorage API, enabling users to review, re-render, or delete recent
+ * formulas within a dedicated sidebar interface.
+ */
 
 const History = (function() {
     const STORAGE_KEY = "LATEXRENDER_HISTORY_V2";
