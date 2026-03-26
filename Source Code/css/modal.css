@@ -1,7 +1,19 @@
-/* modal.css
- * Professional, theme-matching confirmation modal.
- * Uses a blurred backdrop and graphite colors for a premium feel.
- */
+/*
+    File: css/modal.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the application's modal dialog system. Provides a premium,
+    theme-consistent overlay for confirmation dialogs and alerts, featuring
+    blurred backdrops and refined typography for high-impact user
+    communications.
+*/
 
 .modal-overlay {
     position: fixed;
