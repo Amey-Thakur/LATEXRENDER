@@ -1,6 +1,19 @@
-// toolbar.js
-// Provides an intuitive, categorized floating pop-up palette to quickly drop advanced LaTeX math symbols.
-// Mimics high-end math editors with smooth tab transitions and cursor-aware insertions.
+/**
+ * File: js/toolbar.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), KaTeX, LocalStorage API
+ * 
+ * Description:
+ * Interactive math symbol palette controller for the LATEXRENDER application.
+ * Features categorized symbol libraries, a robust search engine, and
+ * intelligent text insertion logic that anticipates cursor placement
+ * within complex LaTeX structures like matrices and fractions.
+ */
 
 const Toolbar = (function() {
     const categories = [
