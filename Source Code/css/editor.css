@@ -1,7 +1,18 @@
-/* editor.css
- * Styling for the raw LaTeX input area.
- * The goal is a distraction-free, code-centric experience.
- */
+/*
+    File: css/editor.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Stylesheet for the LaTeX source editor in the LATEXRENDER application.
+    Focused on providing a distraction-free, code-centric input environment
+    with optimized typography for scientific and mathematical notation.
+*/
 
 .editor-header {
     height: 48px;
