@@ -1,7 +1,19 @@
-// utils.js
-// Shared helper functions used across the application.
-// These are small, general-purpose utilities that don't belong
-// to any specific module.
+/**
+ * File: js/utils.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Collection of shared utility functions for the LATEXRENDER application.
+ * Includes performance-optimization tools like debouncing, browser-level
+ * file download triggers, and string sanitization routines to ensure
+ * cross-platform compatibility and efficient resource management.
+ */
 
 
 // Debounce
