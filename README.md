@@ -85,8 +85,8 @@ The engine follows specific **system design patterns** to maintain stability:
 | **Symbol Palette** | Categorized library with **Cursor-Aware Insertion** logic for complex TeX structures. |
 | **History Matrix** | Session-based **Persistence Layer** utilizing the Web Storage API for recent rendering tracking. |
 | **Reactive Interface** | Hardware-accelerated CSS3 UI that reflows dynamically across multimodal viewports. |
-| **Academic Integrity** | Standardized **Scholarly Headers** integrated across 35 source files for professional attribution. |
-| **CI/CD Deployment** | Automated GitHub Actions pipeline for immediate **Synchronized Production** deployment. |
+| **URL Persistence** | Serialized **Base64 Subsystem** for generating portable, state-preserving deep-link formulas. |
+| **Zero-Build PWA** | Vanilla ES6 architecture providing a **Native-Like Experience** without transpilation or build steps. |
 
 > [!NOTE]
 > ### Technical Polish: The Multimodal Singularity
