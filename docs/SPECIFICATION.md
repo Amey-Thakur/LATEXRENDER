@@ -59,4 +59,4 @@ graph TD
 
 ---
 
-*Technical Specification | LaTeX Render Engine | Phase 6 Final State*
+*Technical Specification | Vanilla JS | Version 1.0*
