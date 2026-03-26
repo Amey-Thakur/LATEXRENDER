@@ -1,5 +1,20 @@
-// tooltips.js
-// Shared globally.
+/**
+ * File: js/tooltips.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Global tooltip controller for the LATEXRENDER application. Implements
+ * a lightweight, event-delegated system that dynamically positions 
+ * descriptive labels for any UI element possessing a 'data-tooltip'
+ * attribute, ensuring enhanced clarity and accessibility across
+ * the interface.
+ */
 
 const Tooltips = (function() {
     let tooltipEl = null;
