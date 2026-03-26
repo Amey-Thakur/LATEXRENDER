@@ -12,11 +12,16 @@ graph TD
     Debouncer --> Editor["Editor State Manager"]
     Editor --> KaTeX["KaTeX Engine (Local Vendor)"]
     Editor --> Settings["Dynamic Configuration Registry"]
+    Editor --> Share["URL Sharing Subsystem (Base64)"]
+    Share --> Link["Deep-Link Generation"]
     KaTeX --> Renderer["Render Stage (DOM Injection)"]
     Settings --> Renderer
     Renderer --> Export["Multimodal Export Engine"]
     Export --> Format["Binary Encoders (14 Formats)"]
     Format --> Output["PDF, SVG, EMF, WMF, PNG, etc."]
+    Link --> User
+    URL["URL Parameter Detection"] --> Share
+    Share --> Editor
 ```
 
 ---
@@ -30,6 +35,8 @@ graph TD
 ### 2. Logic & Synchronization
 -   **Debounced Rendering Subsystem**: Integrates a surgical 150-millisecond debounce block on the editor's input stream. This optimizes the rendering loop, ensuring UI responsiveness even when processing complex multiline mathematical equations.
 -   **Observable State Management**: Employs an event-driven synchronization model where the Editor, Settings, and History modules communicate through established callback registries, maintaining a unified application state without global variable pollution.
+-   **URL-Based Formula Persistence**: Implements a serialized sharing subsystem that encodes active LaTeX expressions into **Base64** strings within the URL's query parameters (`?formula=`). This enables portable, state-preserving deep-links that can be shared across academic and research environments.
+-   **Automatic Deep-Link Initialization**: The application logic includes a boot-sequence detection routine that identifies encoded formulas in the URL on startup. It automatically decodes, validates, and injects the formula into the Editor context during the initialization phase, bypassing the need for manual input.
 
 ### 3. Multimodal Export Engine
 -   **Universal Binary Encoders**: Features a 100% dependency-free export pipeline supporting 14 distinct outputs. It utilizes custom-written, hand-rolled binary encoders for structured document formats including **PDF 1.4**, Windows Metafiles (**EMF**, **WMF**), and Icon files (**ICO**), as well as raster and vector payloads.
