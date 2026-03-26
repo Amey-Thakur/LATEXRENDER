@@ -1,9 +1,20 @@
-// capture.js
-// Shared rendering pipeline for the export system.
-// Uses direct Canvas 2D API rendering to avoid the tainted canvas
-// restriction that Chrome enforces on SVG foreignObject images.
-// Walks the live KaTeX DOM tree and paints each visual element
-// (text nodes, rules, backgrounds) onto an offscreen canvas.
+/**
+ * File: js/capture.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6), Canvas 2D API
+ * 
+ * Description:
+ * High-fidelity rendering pipeline for the LATEXRENDER export system.
+ * This module utilizes the HTML5 Canvas 2D API to recursively traverse
+ * the live KaTeX DOM tree and paint mathematical expressions onto an
+ * offscreen canvas, bypassing cross-origin SVG restrictions for 
+ * seamless image generation.
+ */
 
 const Capture = (function() {
     let katexCSSCache = null;
