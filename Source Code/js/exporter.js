@@ -1,7 +1,19 @@
-// exporter.js
-// The central dispatcher for the export pipeline.
-// Reads the selected format and routes the DOM rendering task
-// to the appropriate format module (Raster, Vector, or Document).
+/**
+ * File: js/exporter.js
+ * Author: Amey Thakur
+ * GitHub: https://github.com/Amey-Thakur
+ * Repository: https://github.com/Amey-Thakur/LATEXRENDER
+ * Release Date: March 16 2026
+ * License: MIT
+ * 
+ * Tech Stack: JavaScript (ES6)
+ * 
+ * Description:
+ * Central export dispatcher for the LATEXRENDER application. This module
+ * orchestrates the conversion of rendered LaTeX expressions into various
+ * file formats by routing tasks to specialized raster, vector, and document
+ * export sub-modules based on user selection.
+ */
 
 const Exporter = (function() {
     
