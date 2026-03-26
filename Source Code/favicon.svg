@@ -1,3 +1,19 @@
+<!--
+    File: favicon.svg
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: SVG, XML
+
+    Description:
+    Vector-based application favicon for LATEXRENDER. Features the official
+    LaTeX branding combined with the application's modern RENDER identity
+    for high-fidelity browser display.
+-->
+
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <!-- Official LaTeX Branding Favicon -->
   <defs>
