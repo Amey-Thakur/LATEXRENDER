@@ -85,8 +85,9 @@ The engine follows specific **system design patterns** to maintain stability:
 | **Symbol Palette** | Categorized library with **Cursor-Aware Insertion** logic for complex TeX structures. |
 | **History Matrix** | Session-based **Persistence Layer** utilizing the Web Storage API for recent rendering tracking. |
 | **Reactive Interface** | Hardware-accelerated CSS3 UI that reflows dynamically across multimodal viewports. |
-| **URL Persistence** | Serialized **Base64 Subsystem** for generating portable, state-preserving deep-link formulas. |
-| **Zero-Build PWA** | Vanilla ES6 architecture providing a **Native-Like Experience** without transpilation or build steps. |
+| **Zero-Build PWA** | Vanilla ES6 architecture providing a **Native-Like Experience** and full offline capability. |
+| **Asset Optimization** | Consolidated **CSS/JS Bundling** in `dist/` directories to minimize latency and HTTP overhead. |
+| **Offline Persistence** | Core **Service Worker Caching** ensuring 100% functionality without active network coverage. |
 
 > [!NOTE]
 > ### Technical Polish: The Multimodal Singularity
@@ -124,27 +125,18 @@ LATEXRENDER/
 │
 ├── Source Code/                        # Integrated mathematical application layer
 │   ├── css/                            # Thematic design & hardware-accelerated styling
+│   │   ├── dist/                       # Optimized CSS bundles for production delivery
 │   │   ├── main.css                    # Core shell aesthetic & layout tokens
-│   │   ├── editor.css                  # Input-specific interactive styles
-│   │   ├── toolbar.css                 # Specialized symbol palette styling
 │   │   └── ...                         # Categorized UI/UX styling indices
 │   ├── js/                             # Decoupled ES6 modular logic engine
+│   │   ├── dist/                       # Optimized JS bundles for production delivery
 │   │   ├── formats/                    # Hand-rolled binary export encoders
-│   │   │   ├── document.js             # Native PDF 1.4 compiler logic
-│   │   │   ├── metafile.js             # GDI-compliant EMF/WMF encoder
-│   │   │   ├── vector.js               # SVG and PostScript (EPS/PS) synthesis
-│   │   │   ├── icon.js                 # Binary ICO directory generator
-│   │   │   └── raster.js               # High-resolution rasterization pipeline
-│   │   ├── app.js                      # Root application & system bootloader
-│   │   ├── capture.js                  # High-performance DOM-to-Canvas bridge
-│   │   ├── editor.js                   # Reactive TeX input & cursor management
-│   │   ├── renderer.js                 # Local KaTeX processing & injection
-│   │   ├── history.js                  # LocalStorage session persistence logic
-│   │   ├── toolbar.js                  # Symbol library & insertion logic
 │   │   └── ...                         # Shared utility & interface controllers
 │   ├── assets/                         # Global system resources & vendored engines
 │   │   └── katex/                      # Locally vendored KaTeX v0.16.38 module
-│   └── index.html                      # System entrance & sovereign bootstrap index
+│   ├── index.html                      # System entrance & sovereign bootstrap index
+│   ├── manifest.json                   # Web Application manifest & PWA identity
+│   └── sw.js                           # Service Worker & offline cache logic
 │
 ├── .gitattributes                      # Repository attribute & normalization
 ├── .gitignore                          # Development exclusion & build logic

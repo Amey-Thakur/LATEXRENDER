@@ -33,6 +33,7 @@
     <!-- Premium Branding Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
     
     <!-- Google Fonts - Play -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,17 +43,8 @@
     <!-- Vendored KaTeX Engine (Zero external dependencies) -->
     <link rel="stylesheet" href="vendor/katex/katex.min.css">
     
-    <!-- Application Styles -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/editor.css">
-    <link rel="stylesheet" href="css/preview.css">
-    <link rel="stylesheet" href="css/controls.css">
-    <link rel="stylesheet" href="css/history.css">
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/toast.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/tooltips.css">
-    <link rel="stylesheet" href="css/toolbar.css">
+    <!-- Application Styles (Optimized Bundle) -->
+    <link rel="stylesheet" href="css/dist/bundle.css">
 </head>
 <body>
 
@@ -253,25 +245,19 @@
     <!-- Vendored KaTeX Script -->
     <script defer src="vendor/katex/katex.min.js"></script>
     
-    <!-- Application Logic -->
-    <script defer src="js/utils.js"></script>
-    <script defer src="js/modal.js"></script>
-    <script defer src="js/toast.js"></script>
-    <script defer src="js/settings.js"></script>
-    <script defer src="js/share.js"></script>
-    <script defer src="js/history.js"></script>
-    <script defer src="js/tooltips.js"></script>
-    <script defer src="js/toolbar.js"></script>
-    <script defer src="js/capture.js"></script>
-    <script defer src="js/formats/raster.js"></script>
-    <script defer src="js/formats/document.js"></script>
-    <script defer src="js/formats/vector.js"></script>
-    <script defer src="js/formats/icon.js"></script>
-    <script defer src="js/formats/metafile.js"></script>
-    <script defer src="js/exporter.js"></script>
-    <script defer src="js/editor.js"></script>
-    <script defer src="js/renderer.js"></script>
-    <script defer src="js/app.js"></script>
+    <!-- Application Logic (Optimized Bundle) -->
+    <script defer src="js/dist/bundle.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,37 @@
+{
+    "name": "LaTeX Render",
+    "short_name": "LATEXRENDER",
+    "description": "Autonomous, high-fidelity mathematical expression rendering and export engine. Sovereign client-side architecture for professional TeX typesetting.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0A0D11",
+    "theme_color": "#2F81F7",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "64x64",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "education",
+        "utilities",
+        "productivity"
+    ],
+    "screenshots": [
+        {
+            "src": "../screenshots/application_interface.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "LATEXRENDER Interface"
+        }
+    ]
+}
