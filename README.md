@@ -1,7 +1,7 @@
 <div align="center">
 
   <a name="readme-top"></a>
-  # LaTeX Render
+  # <img src="Source Code/favicon.svg" width="32" height="32"> LaTeX Render
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
   ![Status](https://img.shields.io/badge/Status-Completed-success)
