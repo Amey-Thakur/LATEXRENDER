@@ -91,7 +91,11 @@
             </div>
         </aside>
 
-        <!-- Editor View (Left Pane) -->
+        <!-- Editor and preview. This wrapper is what flips between side by
+             side and stacked; the configuration panel stays to the right of
+             it in both arrangements. -->
+        <div class="workspace-content">
+        <!-- Editor View -->
         <section class="pane-editor">
             <div class="editor-header">
                 <span>Source Code</span>
@@ -135,7 +139,9 @@
             </div>
         </section>
 
-        <!-- Settings & Export (Right Pane) -->
+        </div>
+
+        <!-- Settings & Export (always on the right) -->
         <aside id="pane-controls" class="pane-controls">
             <div class="controls-header">Configurations</div>
             <div class="controls-body">

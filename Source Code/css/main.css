@@ -263,6 +263,11 @@ body {
         flex-direction: column;
         overflow-y: auto;
     }
+    /* The editor and preview sit inside .workspace-content now, so the
+       stacking rule has to reach through it. */
+    .workspace-content {
+        display: contents;
+    }
     .pane-editor {
         flex: none;
         height: 250px;

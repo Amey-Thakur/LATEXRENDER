@@ -9,13 +9,44 @@
     Tech Stack: CSS3
 
     Description:
-    Workspace splitters and the stacked layout. The panes were a fixed
-    left-to-right split; these rules add a draggable divider between them and a
-    top-to-bottom arrangement, both driven by js/layout.js.
+    Workspace splitters, the collapsible configuration panel, and the stacked
+    arrangement.
+
+    The workspace is always a row: the editor and preview live inside
+    .workspace-content, and the configuration panel sits to the right of it.
+    Switching to the stacked layout changes the direction of that wrapper only,
+    so the panel keeps its position, its width and its own scrolling in both
+    arrangements.
 */
 
-/* The divider itself is thin, but the grab area is not: a 1px target is
-   unusable with a mouse and impossible with a trackpad. */
+.workspace-content {
+    display: flex;
+    flex: 1;
+    /* Both are required for the children to scroll rather than pushing the
+       wrapper past the workspace. A flex item will not shrink below its
+       content size without them. */
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.workspace-content.is-stacked {
+    flex-direction: column;
+}
+
+.workspace-content.is-stacked .pane-editor {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.workspace-content > .pane-editor,
+.workspace-content > .pane-preview {
+    min-width: 0;
+    min-height: 0;
+}
+
+/* The divider is thin, but the grab area is not: a 1px target is unusable
+   with a mouse and impossible with a trackpad. */
 .pane-splitter {
     flex: 0 0 5px;
     position: relative;
@@ -40,11 +71,16 @@
     outline: none;
 }
 
-/* While a drag is in flight, stop the pointer selecting text or landing on an
-   iframe, and keep the resize cursor everywhere. */
+/* Only the divider inside a stacked content area is horizontal. The one
+   beside the configuration panel stays vertical in both layouts. */
+.workspace-content.is-stacked > .pane-splitter {
+    cursor: row-resize;
+}
+
+/* While a drag is in flight, stop the pointer selecting text and keep the
+   resize cursor everywhere. */
 body.is-resizing {
     user-select: none;
-    cursor: col-resize;
 }
 
 body.is-resizing * {
@@ -55,78 +91,20 @@ body.is-resizing .pane-splitter {
     pointer-events: auto;
 }
 
-/* Stacked: the same panes, arranged top to bottom. */
-.workspace.is-stacked {
-    flex-direction: column;
-}
-
-.workspace.is-stacked .pane-editor {
-    border-right: none;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.workspace.is-stacked .pane-controls {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid var(--border-subtle);
-}
-
-.workspace.is-stacked .pane-splitter {
-    cursor: row-resize;
-}
-
-.workspace.is-stacked ~ * body.is-resizing,
-body.is-resizing:has(.workspace.is-stacked) {
-    cursor: row-resize;
-}
-
 /* The splitters belong to pointer input. Below the tablet breakpoint the
-   stylesheet stacks the panes itself and the layout is scroll-driven, so they
+   stylesheet stacks everything itself and the layout is scroll-driven, so they
    are removed rather than left as dead furniture. */
 @media (max-width: 900px) {
     .pane-splitter {
         display: none;
     }
 
-    .workspace.is-stacked .pane-editor,
-    .workspace.is-stacked .pane-controls {
-        flex: none;
+    .workspace-content {
+        flex-direction: column;
+        overflow: visible;
     }
 }
 
 .layout-toggle svg {
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/*
-    Scrolling in the stacked layout.
-
-    Side by side, .pane-controls is a fixed-width column and `flex: 0 0 auto`
-    is right. Stacked, that same rule tells it to take its full content height,
-    so it grew past the workspace, whose overflow is hidden, and the settings
-    below the fold could not be reached at all.
-
-    A flex child also will not shrink below its content unless min-height is
-    zero, which is what lets .controls-body scroll instead of the pane growing.
-*/
-.workspace.is-stacked .pane-editor,
-.workspace.is-stacked .pane-preview,
-.workspace.is-stacked .pane-controls {
-    min-height: 0;
-}
-
-.workspace.is-stacked .pane-controls {
-    flex: 0 1 auto;
-    max-height: 42vh;
-}
-
-.workspace.is-stacked .controls-body {
-    min-height: 0;
-    overflow-y: auto;
-}
-
-/* The editor and preview bodies need the same treatment for the same reason. */
-.workspace.is-stacked .pane-editor > *,
-.workspace.is-stacked .pane-preview > * {
-    min-height: 0;
 }

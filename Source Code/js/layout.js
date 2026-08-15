@@ -9,10 +9,16 @@
  * Tech Stack: JavaScript (ES6), Pointer Events, LocalStorage API
  *
  * Description:
- * Workspace layout controller. Provides a draggable splitter between the
- * editor, the preview and the configuration panel, and a switch between the
- * side-by-side and stacked arrangements. Both the orientation and the pane
- * sizes persist, so the workspace a user arranges is the one they return to.
+ * Workspace layout controller. Provides draggable splitters between the
+ * panes, a collapsible configuration panel, and a switch between the side by
+ * side and stacked arrangements.
+ *
+ * Only the editor and the preview change places. The configuration panel is
+ * anchored to the right in both layouts, which keeps the controls where the
+ * hand expects them and means the panel is never asked to lay itself out
+ * along an axis it was not designed for.
+ *
+ * Orientation, pane sizes and the collapsed state all persist.
  */
 
 const Layout = (function () {
@@ -25,6 +31,7 @@ const Layout = (function () {
     const MIN_PANE_PX = 220;
 
     let workspace = null;
+    let content = null;
     let editor = null;
     let preview = null;
     let controls = null;
@@ -72,8 +79,11 @@ const Layout = (function () {
         let dragging = false;
 
         const apply = (px) => {
-            const vertical = isStacked();
-            const total = vertical ? workspace.clientHeight : workspace.clientWidth;
+            // The editor divider follows the content axis. The controls divider
+            // is horizontal in both layouts, because the panel never moves.
+            const vertical = kind === 'editor' && isStacked();
+            const box = kind === 'editor' ? content : workspace;
+            const total = vertical ? box.clientHeight : box.clientWidth;
             const size = Math.max(MIN_PANE_PX, Math.min(px, total - MIN_PANE_PX));
             if (kind === 'editor') {
                 before.style.flex = '0 0 ' + size + 'px';
@@ -85,12 +95,11 @@ const Layout = (function () {
         };
 
         const fromEvent = (e) => {
-            const r = workspace.getBoundingClientRect();
-            const vertical = isStacked();
             if (kind === 'editor') {
-                return vertical ? e.clientY - r.top : e.clientX - r.left;
+                const r = content.getBoundingClientRect();
+                return isStacked() ? e.clientY - r.top : e.clientX - r.left;
             }
-            return vertical ? r.bottom - e.clientY : r.right - e.clientX;
+            return workspace.getBoundingClientRect().right - e.clientX;
         };
 
         bar.addEventListener('pointerdown', (e) => {
@@ -122,11 +131,12 @@ const Layout = (function () {
         bar.addEventListener('keydown', (e) => {
             if (!active()) return;
             const step = e.shiftKey ? 40 : 12;
+            const vertical = kind === 'editor' && isStacked();
             const current = kind === 'editor'
-                ? (isStacked() ? before.offsetHeight : before.offsetWidth)
-                : (isStacked() ? after.offsetHeight : after.offsetWidth);
-            const back = isStacked() ? 'ArrowUp' : 'ArrowLeft';
-            const fwd = isStacked() ? 'ArrowDown' : 'ArrowRight';
+                ? (vertical ? before.offsetHeight : before.offsetWidth)
+                : after.offsetWidth;
+            const back = vertical ? 'ArrowUp' : 'ArrowLeft';
+            const fwd = vertical ? 'ArrowDown' : 'ArrowRight';
             if (e.key === back) { apply(current - step * (kind === 'editor' ? 1 : -1)); }
             else if (e.key === fwd) { apply(current + step * (kind === 'editor' ? 1 : -1)); }
             else { return; }
@@ -156,7 +166,7 @@ const Layout = (function () {
 
     function applyOrientation() {
         const stacked = isStacked();
-        workspace.classList.toggle('is-stacked', stacked);
+        content.classList.toggle('is-stacked', stacked);
         if (toggleBtn) {
             toggleBtn.setAttribute('aria-pressed', String(stacked));
             toggleBtn.setAttribute('data-tooltip',
@@ -187,13 +197,14 @@ const Layout = (function () {
         editor = document.querySelector('.pane-editor');
         preview = document.querySelector('.pane-preview');
         controls = document.querySelector('.pane-controls');
+        content = document.querySelector('.workspace-content');
         toggleBtn = document.getElementById('btn-layout-toggle');
 
-        if (!workspace || !editor || !preview || !controls) return;
+        if (!workspace || !content || !editor || !preview || !controls) return;
 
         load();
 
-        workspace.insertBefore(makeSplitter(editor, preview, 'editor'), preview);
+        content.insertBefore(makeSplitter(editor, preview, 'editor'), preview);
         controlsSplitter = makeSplitter(preview, controls, 'controls');
         workspace.insertBefore(controlsSplitter, controls);
 
