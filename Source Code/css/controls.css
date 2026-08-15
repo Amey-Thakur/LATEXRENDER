@@ -167,3 +167,42 @@
 .btn-primary:hover {
     background-color: #1a6ff0;
 }
+
+/*
+    Touch targets on pointer-coarse devices.
+
+    The sliders are 16px tall and the checkboxes 16px square, which is fine
+    under a mouse and too small under a thumb. On a touch device the control
+    itself grows and the label row gains height, without changing the desktop
+    appearance at all.
+*/
+@media (pointer: coarse) {
+    .input-range {
+        height: 28px;
+    }
+
+    .input-range::-webkit-slider-thumb {
+        width: 22px;
+        height: 22px;
+    }
+
+    .input-range::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+    }
+
+    .input-checkbox {
+        width: 22px;
+        height: 22px;
+    }
+
+    .control-toggle {
+        min-height: 44px;
+        gap: 12px;
+    }
+
+    .color-picker-wrapper .input-color {
+        width: 34px;
+        height: 34px;
+    }
+}

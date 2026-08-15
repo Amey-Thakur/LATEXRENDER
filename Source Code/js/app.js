@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Exporter.init("#btn-export", "#export-format", "#preview-container");
     Share.init("#btn-share");
     History.init("#btn-history", ".pane-history");
+    Layout.init();
 
     // Settings Panel Toggle
     const settingsToggle = document.getElementById("btn-settings-toggle");

@@ -77,12 +77,24 @@ const History = (function() {
         renderHistoryList();
     }
 
+    // Storage can refuse to co-operate: private browsing, a full quota, or a
+    // blocked third-party context all throw. History is a convenience, so a
+    // failure here must never interrupt rendering or exporting.
     function save() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        } catch (e) {
+            /* keep the in-memory history for this session */
+        }
     }
 
     function load() {
-        const stored = localStorage.getItem(STORAGE_KEY);
+        let stored = null;
+        try {
+            stored = localStorage.getItem(STORAGE_KEY);
+        } catch (e) {
+            return;
+        }
         if (stored) {
             try {
                 history = JSON.parse(stored);

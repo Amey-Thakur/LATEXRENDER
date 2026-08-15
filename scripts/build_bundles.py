@@ -43,6 +43,7 @@ JS_ORDER = [
     "js/formats/icon.js",
     "js/formats/metafile.js",
     "js/exporter.js",
+    "js/layout.js",
     "js/editor.js",
     "js/renderer.js",
     "js/app.js",
@@ -58,6 +59,7 @@ CSS_ORDER = [
     "css/modal.css",
     "css/preview.css",
     "css/toast.css",
+    "css/layout.css",
     "css/toolbar.css",
     "css/tooltips.css",
 ]

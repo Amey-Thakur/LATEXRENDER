@@ -571,6 +571,45 @@ body {
 }
 
 /*
+    Touch targets on pointer-coarse devices.
+
+    The sliders are 16px tall and the checkboxes 16px square, which is fine
+    under a mouse and too small under a thumb. On a touch device the control
+    itself grows and the label row gains height, without changing the desktop
+    appearance at all.
+*/
+@media (pointer: coarse) {
+    .input-range {
+        height: 28px;
+    }
+
+    .input-range::-webkit-slider-thumb {
+        width: 22px;
+        height: 22px;
+    }
+
+    .input-range::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+    }
+
+    .input-checkbox {
+        width: 22px;
+        height: 22px;
+    }
+
+    .control-toggle {
+        min-height: 44px;
+        gap: 12px;
+    }
+
+    .color-picker-wrapper .input-color {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+/*
     File: css/editor.css
     Author: Amey Thakur
     GitHub: https://github.com/Amey-Thakur
@@ -1072,6 +1111,106 @@ body {
 }
 
 /*
+    File: css/layout.css
+    Author: Amey Thakur
+    GitHub: https://github.com/Amey-Thakur
+    Repository: https://github.com/Amey-Thakur/LATEXRENDER
+    Release Date: March 16 2026
+    License: MIT
+
+    Tech Stack: CSS3
+
+    Description:
+    Workspace splitters and the stacked layout. The panes were a fixed
+    left-to-right split; these rules add a draggable divider between them and a
+    top-to-bottom arrangement, both driven by js/layout.js.
+*/
+
+/* The divider itself is thin, but the grab area is not: a 1px target is
+   unusable with a mouse and impossible with a trackpad. */
+.pane-splitter {
+    flex: 0 0 5px;
+    position: relative;
+    background-color: var(--border-subtle);
+    cursor: col-resize;
+    transition: background-color 0.15s ease;
+    z-index: 20;
+    touch-action: none;
+}
+
+.pane-splitter::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    cursor: inherit;
+}
+
+.pane-splitter:hover,
+.pane-splitter:focus-visible,
+.pane-splitter.dragging {
+    background-color: var(--accent-blue);
+    outline: none;
+}
+
+/* While a drag is in flight, stop the pointer selecting text or landing on an
+   iframe, and keep the resize cursor everywhere. */
+body.is-resizing {
+    user-select: none;
+    cursor: col-resize;
+}
+
+body.is-resizing * {
+    pointer-events: none;
+}
+
+body.is-resizing .pane-splitter {
+    pointer-events: auto;
+}
+
+/* Stacked: the same panes, arranged top to bottom. */
+.workspace.is-stacked {
+    flex-direction: column;
+}
+
+.workspace.is-stacked .pane-editor {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.workspace.is-stacked .pane-controls {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.workspace.is-stacked .pane-splitter {
+    cursor: row-resize;
+}
+
+.workspace.is-stacked ~ * body.is-resizing,
+body.is-resizing:has(.workspace.is-stacked) {
+    cursor: row-resize;
+}
+
+/* The splitters belong to pointer input. Below the tablet breakpoint the
+   stylesheet stacks the panes itself and the layout is scroll-driven, so they
+   are removed rather than left as dead furniture. */
+@media (max-width: 900px) {
+    .pane-splitter {
+        display: none;
+    }
+
+    .workspace.is-stacked .pane-editor,
+    .workspace.is-stacked .pane-controls {
+        flex: none;
+    }
+}
+
+.layout-toggle svg {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*
     File: css/toolbar.css
     Author: Amey Thakur
     GitHub: https://github.com/Amey-Thakur
@@ -1093,14 +1232,18 @@ body {
     top: 56px; /* Just beneath the editor-header */
     right: 16px;
     /*
-        480px is the width the full-width math structures need, but it is a
-        ceiling rather than a fixed size. Anchored 16px from the right, a rigid
-        480px box needs a 496px viewport; below that it used to hang off the
-        left edge of the screen and the first column of symbols could not be
-        reached. Clamping to the viewport keeps every symbol tappable on a
-        phone without a breakpoint to maintain.
+        480px is the width the full-width math structures want, but it is a
+        ceiling rather than a fixed size.
+
+        The clamp is against 100%, not 100vw. This element is absolutely
+        positioned inside .pane-editor, so `right: 16px` is measured from the
+        pane, not the window. A rigid 480px box therefore hung off the left
+        edge whenever the pane was narrower than about 500px, which happens on
+        a phone and equally on a 1024px tablet where the pane is only 367px
+        wide. Clamping to the containing block covers both, and the symbol
+        grid simply reflows to fewer columns.
     */
-    width: min(480px, calc(100vw - 32px));
+    width: min(480px, calc(100% - 32px));
     /* Never taller than the screen. The grid inside scrolls instead. */
     max-height: min(70vh, 560px);
     background-color: var(--bg-panel);
