@@ -90,12 +90,17 @@ def build_id(bundles: dict[str, str]) -> str:
     gets the new release and the old caches are dropped. Maintaining a version
     by hand is the failure this replaces: the previous worker used a fixed
     name, so its caches were never invalidated and updates never shipped.
+
+    Everything is normalised to LF before hashing. Reading raw bytes made the
+    identifier depend on the checkout's line endings, so a Windows working copy
+    and a Linux CI runner disagreed about the same commit.
     """
     h = hashlib.sha256()
     for name in sorted(bundles):
         h.update(name.encode())
-        h.update(bundles[name].encode())
-    h.update((SRC / "index.html").read_bytes())
+        h.update(bundles[name].replace("\r\n", "\n").encode())
+    index = (SRC / "index.html").read_text(encoding="utf-8").replace("\r\n", "\n")
+    h.update(index.encode())
     return h.hexdigest()[:8]
 
 
