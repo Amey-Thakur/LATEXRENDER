@@ -134,9 +134,9 @@ const Toolbar = (function() {
                 { char: "⌈⋅⌉", tex: "\\lceil  \\rceil", tip: "Ceiling Function" },
                 { char: "binom", tex: "\\binom{n}{k}", tip: "Binomial Coefficient" },
                 { char: "cases", tex: "\\begin{cases}\nx & \\text{if } x > 0 \\\\\n0 & \\text{otherwise}\n\\end{cases}", tip: "Piecewise Function" },
-                { char: "[■]", tex: "\\begin{bmatrix}\na & b \\\\\nc & d\n\\end{bmatrix}", tip: "Square Matrix [ ]" },
-                { char: "(■)", tex: "\\begin{pmatrix}\na & b \\\\\nc & d\n\\end{pmatrix}", tip: "Parentheses Matrix ( )" },
-                { char: "|■|", tex: "\\begin{vmatrix}\na & b \\\\\nc & d\n\\end{vmatrix}", tip: "Determinant | |" }
+                { char: "[a b]", tex: "\\begin{bmatrix}\na & b \\\\\nc & d\n\\end{bmatrix}", tip: "Square Matrix [ ]" },
+                { char: "(a b)", tex: "\\begin{pmatrix}\na & b \\\\\nc & d\n\\end{pmatrix}", tip: "Parentheses Matrix ( )" },
+                { char: "|a b|", tex: "\\begin{vmatrix}\na & b \\\\\nc & d\n\\end{vmatrix}", tip: "Determinant | |" }
             ]
         },
         {
@@ -223,6 +223,9 @@ const Toolbar = (function() {
 
     function togglePalette() {
         isVisible = !isVisible;
+        // aria-expanded has to follow the visual state, otherwise a screen
+        // reader reports the palette as closed while it is on screen.
+        btnToggle.setAttribute('aria-expanded', String(isVisible));
         if (isVisible) {
             container.classList.remove('hidden');
             btnToggle.classList.add('active'); // Style sync
@@ -257,17 +260,25 @@ const Toolbar = (function() {
         symBtn.className = 'symbol-btn';
         symBtn.setAttribute('data-tooltip', sym.tip);
         
-        if (typeof katex !== 'undefined') {
-            try {
-                const renderTex = sym.tex.includes('num') || sym.tex.includes('bmatrix') || sym.tex.includes('cases') || sym.tex.includes('aligned') 
-                    ? sym.char // fallback nicely for complex structures
-                    : sym.tex;
-                symBtn.innerHTML = katex.renderToString(renderTex, { throwOnError: false, displayMode: false });
-            } catch (e) {
-                symBtn.innerText = sym.char;
-            }
+        /*
+            Multi-line structures cannot be previewed inline on a small button,
+            so those show their plain label instead. The label has to be set as
+            text, not handed to KaTeX: labels such as "[■]" contain characters
+            KaTeX has no glyph for, which produced a console warning and a tofu
+            box on every matrix button.
+        */
+        const isStructure = /num|bmatrix|pmatrix|vmatrix|cases|aligned/.test(sym.tex);
+
+        if (isStructure || typeof katex === 'undefined') {
+            symBtn.classList.add('symbol-btn-label');
+            symBtn.textContent = sym.char;
         } else {
-            symBtn.innerText = sym.char;
+            try {
+                symBtn.innerHTML = katex.renderToString(sym.tex, { throwOnError: false, displayMode: false });
+            } catch (e) {
+                symBtn.classList.add('symbol-btn-label');
+                symBtn.textContent = sym.char;
+            }
         }
         
         symBtn.addEventListener('click', (e) => {
@@ -287,6 +298,8 @@ const Toolbar = (function() {
         searchInput.type = 'text';
         searchInput.className = 'palette-search';
         searchInput.placeholder = 'Search limit, alpha, matrix...';
+        // A placeholder is not an accessible name.
+        searchInput.setAttribute('aria-label', 'Search symbols');
         
         const searchIcon = document.createElement('i');
         searchIcon.className = 'fas fa-search search-icon';
@@ -356,6 +369,9 @@ const Toolbar = (function() {
             anchor.className = 'palette-nav-icon';
             const rawTitle = nav.id.replace('cat-', '');
             anchor.setAttribute('data-tooltip', rawTitle);
+            // These buttons carry only an icon or a typeset symbol, so without
+            // this they reach a screen reader as an unnamed button.
+            anchor.setAttribute('aria-label', `Jump to ${rawTitle} symbols`);
 
             if (nav.id === 'cat-Recent') {
                 anchor.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>'; 

@@ -19,7 +19,17 @@
     position: absolute;
     top: 56px; /* Just beneath the editor-header */
     right: 16px;
-    width: 480px; /* Increased to fit full-width math structures */
+    /*
+        480px is the width the full-width math structures need, but it is a
+        ceiling rather than a fixed size. Anchored 16px from the right, a rigid
+        480px box needs a 496px viewport; below that it used to hang off the
+        left edge of the screen and the first column of symbols could not be
+        reached. Clamping to the viewport keeps every symbol tappable on a
+        phone without a breakpoint to maintain.
+    */
+    width: min(480px, calc(100vw - 32px));
+    /* Never taller than the screen. The grid inside scrolls instead. */
+    max-height: min(70vh, 560px);
     background-color: var(--bg-panel);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
@@ -81,7 +91,14 @@
 .palette-main {
     display: flex;
     flex-direction: column;
-    height: 380px; 
+    /*
+        380px is the preferred height. It has to be able to shrink inside the
+        palette's max-height on a short screen, and a flex child will not
+        shrink below its content without min-height: 0. The grid inside
+        scrolls, so nothing is lost.
+    */
+    height: min(380px, 50vh);
+    min-height: 0;
 }
 
 .palette-content {
@@ -132,6 +149,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/*
+    Buttons for multi-line structures show a plain text label rather than a
+    KaTeX rendering. Set in the interface font at a smaller size so a label
+    such as "[a b; c d]" does not sit at the same optical weight as a real
+    typeset symbol beside it.
+*/
+.symbol-btn-label {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 }
 
 .symbol-btn:hover {

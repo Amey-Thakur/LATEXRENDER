@@ -25,7 +25,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      
+
+      # The browser loads css/dist/bundle.css and js/dist/bundle.js, not the
+      # files under css/ and js/. Editing a source without rebuilding used to
+      # ship nothing, silently. This fails the deploy instead.
+      - name: Verify bundles match their sources
+        run: python scripts/build_bundles.py --check
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
       

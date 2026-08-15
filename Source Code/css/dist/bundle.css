@@ -104,6 +104,9 @@ body {
 }
 
 .brand-logotype {
+    /* This is the document's h1. Reset the heading defaults so it sits in the
+       flex header exactly as the previous div did. */
+    margin: 0;
     font-family: "KaTeX_Main", "Times New Roman", serif;
     font-size: 1.45rem;
     font-weight: 500;
@@ -278,6 +281,54 @@ body {
         min-height: 400px;
     }
 }
+
+/*
+    Phones. The tablet rules above stack the panes, but they were written for a
+    screen with room to spare: a fixed 250px editor and a 400px preview need
+    650px of height before the header, which is more than a phone has in
+    landscape. Here both panes are sized against the viewport instead, and the
+    header tightens so the brand and the controls stay on one line.
+*/
+@media (max-width: 600px) {
+    .app-header {
+        padding: 0 14px;
+        gap: 10px;
+    }
+
+    .pane-editor {
+        height: auto;
+        min-height: 180px;
+        max-height: 38vh;
+    }
+
+    .pane-preview {
+        min-height: 46vh;
+    }
+
+    .pane-editor,
+    .pane-preview,
+    .pane-controls {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+/*
+    Landscape on a phone is the tightest case there is: roughly 375px of
+    height for everything. Give the preview the room and let the editor be
+    small, because the preview is what the user is looking at.
+*/
+@media (max-width: 900px) and (max-height: 480px) {
+    .pane-editor {
+        min-height: 120px;
+        max-height: 34vh;
+    }
+
+    .pane-preview {
+        min-height: 50vh;
+    }
+}
+
 /*
     File: css/animations.css
     Author: Amey Thakur
@@ -348,6 +399,7 @@ body {
         transform: translateY(0);
     }
 }
+
 /*
     File: css/controls.css
     Author: Amey Thakur
@@ -517,6 +569,7 @@ body {
 .btn-primary:hover {
     background-color: #1a6ff0;
 }
+
 /*
     File: css/editor.css
     Author: Amey Thakur
@@ -720,6 +773,7 @@ body {
         box-shadow: 10px 0 30px rgba(0,0,0,0.5);
     }
 }
+
 /*
     File: css/modal.css
     Author: Amey Thakur
@@ -822,6 +876,7 @@ body {
 .btn-danger:hover {
     background-color: #f85149dd;
 }
+
 /*
     File: css/preview.css
     Author: Amey Thakur
@@ -914,6 +969,7 @@ body {
     box-shadow: 0 8px 16px rgba(248, 81, 73, 0.2);
     z-index: 10;
 }
+
 /*
     File: css/toast.css
     Author: Amey Thakur
@@ -972,6 +1028,7 @@ body {
     from { opacity: 1; transform: translateY(0); }
     to { opacity: 0; transform: translateY(20px); }
 }
+
 /*
     File: css/toolbar.css
     Author: Amey Thakur
@@ -993,7 +1050,17 @@ body {
     position: absolute;
     top: 56px; /* Just beneath the editor-header */
     right: 16px;
-    width: 480px; /* Increased to fit full-width math structures */
+    /*
+        480px is the width the full-width math structures need, but it is a
+        ceiling rather than a fixed size. Anchored 16px from the right, a rigid
+        480px box needs a 496px viewport; below that it used to hang off the
+        left edge of the screen and the first column of symbols could not be
+        reached. Clamping to the viewport keeps every symbol tappable on a
+        phone without a breakpoint to maintain.
+    */
+    width: min(480px, calc(100vw - 32px));
+    /* Never taller than the screen. The grid inside scrolls instead. */
+    max-height: min(70vh, 560px);
     background-color: var(--bg-panel);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
@@ -1055,7 +1122,14 @@ body {
 .palette-main {
     display: flex;
     flex-direction: column;
-    height: 380px; 
+    /*
+        380px is the preferred height. It has to be able to shrink inside the
+        palette's max-height on a short screen, and a flex child will not
+        shrink below its content without min-height: 0. The grid inside
+        scrolls, so nothing is lost.
+    */
+    height: min(380px, 50vh);
+    min-height: 0;
 }
 
 .palette-content {
@@ -1108,6 +1182,19 @@ body {
     justify-content: center;
 }
 
+/*
+    Buttons for multi-line structures show a plain text label rather than a
+    KaTeX rendering. Set in the interface font at a smaller size so a label
+    such as "[a b; c d]" does not sit at the same optical weight as a real
+    typeset symbol beside it.
+*/
+.symbol-btn-label {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
 .symbol-btn:hover {
     background-color: var(--bg-surface);
     border-color: var(--border-subtle);
@@ -1144,6 +1231,7 @@ body {
     color: var(--text-primary);
     background-color: rgba(255, 255, 255, 0.05);
 }
+
 /*
     File: css/tooltips.css
     Author: Amey Thakur

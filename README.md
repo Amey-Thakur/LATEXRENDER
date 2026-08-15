@@ -230,13 +230,18 @@ Deploy the application layer using standard system CLI logic:
 
 **Python (Terminal / System CLI):**
 ```bash
-python -m http.server 8000
+python -m http.server 8000 --directory "Source Code"
 ```
 
 **Node.js (Terminal / Shell):**
 ```bash
 npx live-server "Source Code"
 ```
+
+> [!NOTE]
+> The application root is `Source Code`, which is also what the deployment
+> workflow publishes. Serving the repository root instead returns a directory
+> listing rather than the engine.
 
 #### Step 3: Engine Initialization
 Once the server is operational, initialize the mathematical rendering engine:
@@ -248,6 +253,22 @@ Once the server is operational, initialize the mathematical rendering engine:
 > You may execute the engine directly via the hosted **GitHub Pages** environment. This portal provides immediate access to the **14-format multimodal export engine** and debounced rendering pipeline.
 >
 > **[Initialize LaTeX Render Production Environment](https://amey-thakur.github.io/LATEXRENDER/)**
+
+#### Step 4: Rebuilding After a Source Change
+
+The browser loads `css/dist/bundle.css` and `js/dist/bundle.js`. The files under
+`css/` and `js/` are the sources those bundles are composed from, so an edit to
+a source reaches the application only once the bundles are rebuilt:
+
+```bash
+python scripts/build_bundles.py
+```
+
+The same script stamps the service worker's cache identifier from a hash of the
+built output, which is what makes a returning visitor receive the new release
+rather than the copy their browser cached. The deployment workflow runs
+`python scripts/build_bundles.py --check` and fails if a bundle is out of date,
+so a stale build cannot ship.
 
 ---
 
