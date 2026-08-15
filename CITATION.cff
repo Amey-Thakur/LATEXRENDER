@@ -8,3 +8,11 @@ title: "LaTeX Render: High-Fidelity Mathematical Expression Rendering and Export
 version: 1.0.0
 date-released: 2026-03-16
 url: "https://github.com/Amey-Thakur/LATEXRENDER"
+repository-code: "https://github.com/Amey-Thakur/LATEXRENDER"
+license: MIT
+keywords:
+  - LaTeX
+  - equation editor
+  - KaTeX
+  - client-side rendering
+  - vector export

@@ -20,7 +20,7 @@
     ],
     "dateReleased": "2026-03-16",
     "codeRepository": "https://github.com/Amey-Thakur/LATEXRENDER",
-    "developmentStatus": "complete",
+    "developmentStatus": "https://www.repostatus.org/#active",
     "runtimePlatform": [
         "Modern Evergreen Browsers",
         "Canvas 2D API",
@@ -36,5 +36,7 @@
         "Equation Editor",
         "Vector Graphics",
         "Scientific Publishing"
-    ]
+    ],
+    "dateModified": "2026-08-15",
+    "version": "1.0.0"
 }
