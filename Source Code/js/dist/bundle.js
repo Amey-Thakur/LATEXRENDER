@@ -2266,8 +2266,10 @@ const Layout = (function () {
     let preview = null;
     let controls = null;
     let toggleBtn = null;
+    let settingsBtn = null;
+    let controlsSplitter = null;
 
-    let state = { orientation: 'row', editorSize: null, controlsSize: null };
+    let state = { orientation: 'row', editorSize: null, controlsSize: null, controlsCollapsed: false };
 
     function load() {
         try {
@@ -2372,6 +2374,23 @@ const Layout = (function () {
         return bar;
     }
 
+    /* Collapsing hides the panel and the divider that resizes it, so the
+       workspace does not keep a splitter that controls nothing. */
+    function setControlsCollapsed(collapsed) {
+        state.controlsCollapsed = !!collapsed;
+        controls.classList.toggle('hidden', state.controlsCollapsed);
+        if (controlsSplitter) controlsSplitter.classList.toggle('hidden', state.controlsCollapsed);
+        if (settingsBtn) {
+            settingsBtn.classList.toggle('active', !state.controlsCollapsed);
+            settingsBtn.setAttribute('aria-expanded', String(!state.controlsCollapsed));
+            settingsBtn.setAttribute('aria-controls', 'pane-controls');
+            settingsBtn.setAttribute('data-tooltip',
+                state.controlsCollapsed ? 'Show configuration' : 'Hide configuration');
+            settingsBtn.setAttribute('aria-label',
+                state.controlsCollapsed ? 'Show configuration panel' : 'Hide configuration panel');
+        }
+    }
+
     function applyOrientation() {
         const stacked = isStacked();
         workspace.classList.toggle('is-stacked', stacked);
@@ -2412,7 +2431,17 @@ const Layout = (function () {
         load();
 
         workspace.insertBefore(makeSplitter(editor, preview, 'editor'), preview);
-        workspace.insertBefore(makeSplitter(preview, controls, 'controls'), controls);
+        controlsSplitter = makeSplitter(preview, controls, 'controls');
+        workspace.insertBefore(controlsSplitter, controls);
+
+        settingsBtn = document.getElementById('btn-settings-toggle');
+        if (settingsBtn) {
+            settingsBtn.addEventListener('click', () => {
+                setControlsCollapsed(!state.controlsCollapsed);
+                save();
+            });
+        }
+        setControlsCollapsed(state.controlsCollapsed);
 
         if (toggleBtn) {
             toggleBtn.addEventListener('click', () => {
@@ -2651,15 +2680,8 @@ document.addEventListener("DOMContentLoaded", () => {
     History.init("#btn-history", ".pane-history");
     Layout.init();
 
-    // Settings Panel Toggle
-    const settingsToggle = document.getElementById("btn-settings-toggle");
-    const settingsPane = document.querySelector(".pane-controls");
-    if (settingsToggle && settingsPane) {
-        settingsToggle.addEventListener('click', () => {
-            const isHidden = settingsPane.classList.toggle('hidden');
-            settingsToggle.classList.toggle('active', !isHidden);
-        });
-    }
+    // The configuration panel is collapsed by Layout, which also has to hide
+    // the splitter beside it and remember the state.
 
     // 2. Connect the editor's change event direct to the renderer
     let historyTimeout;

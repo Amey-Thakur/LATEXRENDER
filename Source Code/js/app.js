@@ -27,15 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     History.init("#btn-history", ".pane-history");
     Layout.init();
 
-    // Settings Panel Toggle
-    const settingsToggle = document.getElementById("btn-settings-toggle");
-    const settingsPane = document.querySelector(".pane-controls");
-    if (settingsToggle && settingsPane) {
-        settingsToggle.addEventListener('click', () => {
-            const isHidden = settingsPane.classList.toggle('hidden');
-            settingsToggle.classList.toggle('active', !isHidden);
-        });
-    }
+    // The configuration panel is collapsed by Layout, which also has to hide
+    // the splitter beside it and remember the state.
 
     // 2. Connect the editor's change event direct to the renderer
     let historyTimeout;

@@ -97,3 +97,36 @@ body.is-resizing:has(.workspace.is-stacked) {
 .layout-toggle svg {
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/*
+    Scrolling in the stacked layout.
+
+    Side by side, .pane-controls is a fixed-width column and `flex: 0 0 auto`
+    is right. Stacked, that same rule tells it to take its full content height,
+    so it grew past the workspace, whose overflow is hidden, and the settings
+    below the fold could not be reached at all.
+
+    A flex child also will not shrink below its content unless min-height is
+    zero, which is what lets .controls-body scroll instead of the pane growing.
+*/
+.workspace.is-stacked .pane-editor,
+.workspace.is-stacked .pane-preview,
+.workspace.is-stacked .pane-controls {
+    min-height: 0;
+}
+
+.workspace.is-stacked .pane-controls {
+    flex: 0 1 auto;
+    max-height: 42vh;
+}
+
+.workspace.is-stacked .controls-body {
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* The editor and preview bodies need the same treatment for the same reason. */
+.workspace.is-stacked .pane-editor > *,
+.workspace.is-stacked .pane-preview > * {
+    min-height: 0;
+}
