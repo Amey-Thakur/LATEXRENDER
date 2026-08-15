@@ -1,6 +1,8 @@
 <div align="center">
 
-  # <a href="https://amey-thakur.github.io/LATEXRENDER/"><img src="Source Code/favicon.svg" width="32" height="32" title="LATEXRENDER"></a> LaTeX Render
+  <a href="https://amey-thakur.github.io/LATEXRENDER/" title="Open LaTeX Render"><img src="Source Code/favicon.svg" alt="LaTeX Render mark, links to the live application" width="76"></a>
+
+  # LaTeX Render
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
   ![Status](https://img.shields.io/badge/Status-Completed-2EA043)
@@ -326,7 +328,7 @@ I focused on specific architectural areas where standard web-based TeX tools typ
 
 <div align="center">
 
-  [↑ Back to Top](#-latex-render)
+  [↑ Back to Top](#latex-render)
 
   [Author](#author) &nbsp;·&nbsp; [Overview](#overview) &nbsp;·&nbsp; [Features](#features) &nbsp;·&nbsp; [Structure](#project-structure) &nbsp;·&nbsp; [Results](#results) &nbsp;·&nbsp; [Quick Start](#quick-start) &nbsp;·&nbsp; [Usage Guidelines](#usage-guidelines) &nbsp;·&nbsp; [License](#license) &nbsp;·&nbsp; [About](#about-this-repository)
 
