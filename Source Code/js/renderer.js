@@ -19,11 +19,22 @@
 const Renderer = (function() {
     let outputContainer = null;
     let errorContainer = null;
+    let emptyState = null;
 
     // Initializes the renderer by binding output containers.
     function init(outputSelector, errorSelector) {
         outputContainer = document.querySelector(outputSelector);
         errorContainer = document.querySelector(errorSelector);
+        emptyState = document.getElementById('preview-empty');
+
+        // render() only runs on input, so without this the paper is on screen
+        // from first paint and the empty state sits beside it.
+        if (outputContainer) {
+            const editor = document.getElementById('latex-editor');
+            const startsEmpty = !editor || editor.value.trim() === "";
+            outputContainer.style.display = startsEmpty ? "none" : "";
+            if (emptyState) emptyState.style.display = startsEmpty ? "flex" : "none";
+        }
 
         if (!outputContainer) {
             console.error("Renderer init failed: output element not found", outputSelector);
@@ -44,9 +55,16 @@ const Renderer = (function() {
         errorContainer.style.display = "none";
         
         if (latexString.trim() === "") {
+            // Hide the paper rather than leaving an empty white square on the
+            // stage, and say what to do next instead of showing nothing.
             outputContainer.innerHTML = "";
+            outputContainer.style.display = "none";
+            if (emptyState) emptyState.style.display = "flex";
             return;
         }
+
+        outputContainer.style.display = "";
+        if (emptyState) emptyState.style.display = "none";
 
         try {
             // KaTeX render string directly to HTML string

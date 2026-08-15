@@ -971,6 +971,48 @@ body {
 }
 
 /*
+    Empty state for the stage.
+
+    With no input the render surface used to stay on screen as a bare white
+    square, which reads as a rendering fault on first load. The surface is now
+    hidden until there is something to typeset and this takes its place: quiet,
+    centred, and it says what to do next.
+*/
+.preview-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: auto;
+    padding: 32px;
+    text-align: center;
+    color: var(--text-secondary);
+    user-select: none;
+}
+
+.preview-empty svg {
+    opacity: 0.42;
+}
+
+.preview-empty-title {
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.preview-empty-hint {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    max-width: 30ch;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/*
     File: css/toast.css
     Author: Amey Thakur
     GitHub: https://github.com/Amey-Thakur

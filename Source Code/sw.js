@@ -26,7 +26,7 @@
  * old caches are discarded on activation. It is not maintained by hand.
  */
 
-const BUILD_ID = '6ab91d1f';
+const BUILD_ID = '4d7b0750';
 
 const SHELL_CACHE = `latexrender-shell-${BUILD_ID}`;
 const ASSET_CACHE = `latexrender-assets-${BUILD_ID}`;

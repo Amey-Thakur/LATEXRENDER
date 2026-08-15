@@ -114,6 +114,15 @@
         <section class="pane-preview">
             <div class="preview-header">Live Preview</div>
             <div class="preview-stage">
+                <!-- Shown while there is nothing to render, so an empty editor
+                     does not leave a bare white square on the stage. -->
+                <div id="preview-empty" class="preview-empty">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 5H7l6 7-6 7h11"></path>
+                    </svg>
+                    <p class="preview-empty-title">Nothing to render yet</p>
+                    <p class="preview-empty-hint">Type LaTeX in the editor, or pick a symbol from the palette.</p>
+                </div>
                 <!-- Inner container forms the white "paper" -->
                 <div id="preview-container">
                     <!-- KaTeX DOM gets injected here -->
